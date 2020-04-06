@@ -10,7 +10,7 @@ module.exports = {
         use: ["html-loader"]
       },
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
@@ -25,5 +25,11 @@ module.exports = {
         }
       }
     ]
+  },
+  resolve: {
+    alias: {
+      assets: path.resolve(__dirname, 'assets/'),
+      components: path.resolve(__dirname, 'src/components/')
+    }
   }
 };
