@@ -10,6 +10,11 @@ module.exports = {
         use: ["html-loader"]
       },
       {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
         test: /\.(svg|png|jpg|gif)$/,
         use: {
           loader: "file-loader",
