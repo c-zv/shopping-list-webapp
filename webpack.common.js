@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
@@ -7,7 +7,7 @@ module.exports = {
     rules: [
       {
         test: /\.html$/,
-        use: ["html-loader"]
+        use: ['html-loader']
       },
       {
         test: /\.(js|jsx)$/,
@@ -17,16 +17,17 @@ module.exports = {
       {
         test: /\.(svg|png|jpg|gif)$/,
         use: {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "[name].[hash].[ext]",
-            outputPath: "assets"
+            name: '[name].[hash].[ext]',
+            outputPath: 'assets'
           }
         }
       }
     ]
   },
   resolve: {
+    extensions: ['.js', '.jsx'],
     alias: {
       assets: path.resolve(__dirname, 'assets/'),
       components: path.resolve(__dirname, 'src/components/')

@@ -1,15 +1,16 @@
-const path = require("path");
-const commonWebpack = require("./webpack.common");
+const path = require('path');
 const merge = require("webpack-merge");
 const webpack = require('webpack');
+const commonWebpack = require('./webpack.common');
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(commonWebpack, {
   mode: 'development',
+  devtool: 'eval-source-map',
   output: {
     filename: '[name]-bundle.js',
-    path: path.resolve(__dirname, "/dist")
+    path: path.resolve(__dirname, '/dist')
   },
   devServer: {
     contentBase: './dist',
@@ -23,6 +24,12 @@ module.exports = merge(commonWebpack, {
   ],
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        use: ['eslint-loader']
+      },
       // For css modules (should end with '.module.scss'):
       {
         test: /\.scss$/,
