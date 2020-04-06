@@ -34,6 +34,7 @@ module.exports = merge(commonWebpack, {
   ],
   module: {
     rules: [
+      // For css modules (should end with '.module.scss'):
       {
         test: /\.scss$/,
         use: [
@@ -45,7 +46,23 @@ module.exports = merge(commonWebpack, {
             }
           },
           {loader: 'sass-loader'}
-        ]
+        ],
+        include: /\.module\.scss$/
+      },
+      // For global css:
+      {
+        test: /\.scss$/,
+        use: [
+          {loader: MiniCssExtractPlugin.loader},
+          {loader: 'css-loader',
+            options: {
+              modules: false,
+              sourceMap: false
+            }
+          },
+          {loader: 'sass-loader'}
+        ],
+        exclude: /\.module\.scss$/
       }
     ]
   }
