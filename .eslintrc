@@ -2,9 +2,7 @@
   "parser": "babel-eslint",
   "extends": ["airbnb"],
   "ignorePatterns": ["webpack.common.js", "webpack.dev.js", "webpack.prod.js", "node_modules/"],
-  "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
-  },
+  "rules": {},
   "env": {
     "browser": true,
     "node": true
@@ -16,7 +14,7 @@
           ["assets", "./assets/"],
           ["components", "./src/components/"]
         ],
-        "extensions": [".ts", ".js", ".jsx", ".json"]
+        "extensions": [".js", ".jsx", ".json"]
       }
     }
   }
