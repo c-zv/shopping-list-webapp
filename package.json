@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server  --config webpack.dev.js --watch --progress",
     "build": "webpack --config webpack.prod.js",
+    "build-analyze": "webpack --config webpack.prod.js --profile --json > bundle_analysis.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -27,7 +27,16 @@ module.exports = merge(commonWebpack, {
           removeComments: true
         }
       })
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        node_vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          name: 'vendors'
+        }
+      }
+    }
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '[name]-[contentHash].css' }),
