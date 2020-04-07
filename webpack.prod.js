@@ -30,10 +30,15 @@ module.exports = merge(commonWebpack, {
     ],
     splitChunks: {
       cacheGroups: {
-        node_vendors: {
-          test: /[\\/]node_modules[\\/]/,
+        react_modules: {
+          test: /[\\/]node_modules[\\/]((react).*)[\\/]/,
           chunks: 'all',
-          name: 'vendors'
+          name: 'react-vendors'
+        },
+        node_modules: {
+          test: /[\\/]node_modules[\\/]((?!react).*)[\\/]/,
+          chunks: 'all',
+          name: 'common-vendors'
         }
       }
     }

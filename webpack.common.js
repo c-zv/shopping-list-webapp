@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
-  // TODO: define vendors as optimization.splitChunks=true
   module: {
     rules: [
       {
