@@ -44,7 +44,7 @@ module.exports = merge(commonWebpack, {
   ],
   module: {
     rules: [
-      // For css modules (should end with '.module.scss'):
+      // For css modules:
       {
         test: /\.scss$/,
         use: [
@@ -57,9 +57,9 @@ module.exports = merge(commonWebpack, {
           },
           {loader: 'sass-loader'}
         ],
-        include: /\.module\.scss$/
+        exclude: /\.global\.scss$/
       },
-      // For global css:
+      // For global css (file should end with '.global.scss'):
       {
         test: /\.scss$/,
         use: [
@@ -72,7 +72,7 @@ module.exports = merge(commonWebpack, {
           },
           {loader: 'sass-loader'}
         ],
-        exclude: /\.module\.scss$/
+        include: /\.global\.scss$/
       }
     ]
   }

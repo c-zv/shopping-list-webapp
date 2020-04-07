@@ -13,6 +13,7 @@ module.exports = merge(commonWebpack, {
     path: path.resolve(__dirname, '/dist')
   },
   devServer: {
+    port: 3000,
     contentBase: './dist',
     hot: true
   },
@@ -24,13 +25,7 @@ module.exports = merge(commonWebpack, {
   ],
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        enforce: 'pre',
-        use: ['eslint-loader']
-      },
-      // For css modules (should end with '.module.scss'):
+      // For css modules:
       {
         test: /\.scss$/,
         use: [
@@ -43,9 +38,9 @@ module.exports = merge(commonWebpack, {
           },
           {loader: 'sass-loader'}
         ],
-        include: /\.module\.scss$/
+        exclude: /\.global\.scss$/
       },
-      // For global css:
+      // For global css (file should end with '.global.scss'):
       {
         test: /\.scss$/,
         use: [
@@ -58,7 +53,7 @@ module.exports = merge(commonWebpack, {
           },
           {loader: 'sass-loader'}
         ],
-        exclude: /\.module\.scss$/
+        include: /\.global\.scss$/
       }
     ]
   }
