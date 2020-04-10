@@ -13,6 +13,7 @@ module.exports = merge(commonWebpack, {
   devtool: 'source-map',
   output: {
     filename: '[name]-[contentHash]-bundle.js',
+    publicPath: '.',
     path: path.resolve(__dirname, 'dist')
   },
   optimization: {

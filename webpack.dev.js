@@ -10,6 +10,7 @@ module.exports = merge(commonWebpack, {
   devtool: 'eval-source-map',
   output: {
     filename: '[name]-bundle.js',
+    publicPath: '/',
     path: path.resolve(__dirname, '/dist')
   },
   devServer: {
