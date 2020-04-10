@@ -6,6 +6,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 import Home from 'components/Home';
 import Products from 'components/Products';
+import Product from 'components/Product';
 import ShoppingLists from 'components/ShoppingLists';
 import Settings from 'components/Settings';
 import logo from 'assets/logo.png';
@@ -33,7 +34,14 @@ const NavigationBar = () => (
         <Home />
       </Route>
       <Route path="/products">
-        <Products />
+        <Switch>
+          <Route exact path="/products">
+            <Products />
+          </Route>
+          <Route path="/products/:productId">
+            <Product name="TT" />
+          </Route>
+        </Switch>
       </Route>
       <Route path="/shopping-lists">
         <ShoppingLists />
