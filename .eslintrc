@@ -21,7 +21,8 @@
         "map": [
           ["assets", "./src/assets/"],
           ["components", "./src/components/"],
-          ["routes", "./src/routes/"]
+          ["routes", "./src/routes/"],
+          ["state", "./src/state/"]
         ],
         "extensions": [".js", ".jsx", ".json"]
       }

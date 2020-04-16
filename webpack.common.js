@@ -30,7 +30,8 @@ module.exports = {
     alias: {
       assets: path.resolve(__dirname, 'src/assets/'),
       components: path.resolve(__dirname, 'src/components/'),
-      routes: path.resolve(__dirname, 'src/routes/')
+      routes: path.resolve(__dirname, 'src/routes/'),
+      state: path.resolve(__dirname, 'src/state/'),
     }
   }
 };
