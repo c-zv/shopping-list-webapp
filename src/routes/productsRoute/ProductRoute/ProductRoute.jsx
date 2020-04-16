@@ -8,6 +8,6 @@ const ProductRoute = () => {
   return (
     <Product productId={productId} name="TTT2" />
   );
-}
+};
 
 export default ProductRoute;

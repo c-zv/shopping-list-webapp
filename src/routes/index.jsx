@@ -1,33 +1,41 @@
 import React from 'react';
 import {
-  Route, Switch
+  Route, Switch,
 } from 'react-router-dom';
 
+import NavigationBar from 'components/NavigationBar';
+import PATH from 'routes/paths';
 import HomeRoute from './homeRoute';
 import ProductsRoute from './productsRoute';
 import ShoppingListsRoute from './shoppingListsRoute';
 import SettingsRoute from './settingsRoute';
-import NavigationBar from 'components/NavigationBar';
 
-const BaseRoute = () => (
+const navBarGoTo = {
+  HOME: () => PATH.HOME,
+  PRODUCTS: () => PATH.PRODUCT.ALL,
+  SHOPPING_LISTS: () => PATH.SHOPPING_LIST.ALL,
+  SETTINGS: () => PATH.SETTINGS,
+};
+
+const StartingRoute = () => (
   <>
-    <NavigationBar />
+    <NavigationBar goTo={navBarGoTo} />
 
     <Switch>
-      <Route exact path="/">
+      <Route exact path={PATH.HOME}>
         <HomeRoute />
       </Route>
-      <Route path="/products">
+      <Route path={PATH.PRODUCT.ALL}>
         <ProductsRoute />
       </Route>
-      <Route path="/shopping-lists">
+      <Route path={PATH.SHOPPING_LIST.ALL}>
         <ShoppingListsRoute />
       </Route>
-      <Route path="/settings">
+      <Route path={PATH.SETTINGS}>
         <SettingsRoute />
       </Route>
     </Switch>
   </>
 );
 
-export default BaseRoute;
+export default StartingRoute;
