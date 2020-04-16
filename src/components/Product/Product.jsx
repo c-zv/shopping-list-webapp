@@ -1,18 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Product = ({ productId, name }) => (
-  <div>
-    <p>Current Product ({name}):</p>
-    <p>
-      Current product ID is {productId}
-    </p>
-  </div>
-);
+import useProductHook from './hooks';
+
+const Product = ({ productId }) => {
+  const { product } = useProductHook(productId);
+
+  return (
+    <>
+      {product ? (
+        <div>
+          <p>Current Product ({product.name}):</p>
+          <p>
+            Current product ID is {product.id}
+          </p>
+        </div>
+      ) : (
+        <p>Product not found</p>
+      )}
+    </>
+  );
+};
 
 Product.propTypes = {
   productId: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
 };
 
 export default Product;

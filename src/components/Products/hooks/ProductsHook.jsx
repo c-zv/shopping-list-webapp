@@ -1,22 +1,14 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
 
 const useProductsHook = () => {
-  const products = [
-    {
-      id: '1',
-      name: 'Product 1',
-    },
-    {
-      id: '2',
-      name: 'Product 2',
-    },
-    {
-      id: '3',
-      name: 'Product 3',
-    },
-  ];
+  const products = useSelector((state) => state.products);
 
-  return { products };
+  const randomProduct = () => ({
+    id: `${Math.round(Math.random() * 100000)}`,
+    name: `name_${Math.round(Math.random() * 1000).toString()}`,
+  });
+
+  return { products, randomProduct };
 };
 
 export default useProductsHook;

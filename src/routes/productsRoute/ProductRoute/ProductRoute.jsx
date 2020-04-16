@@ -6,7 +6,7 @@ import Product from 'components/Product';
 const ProductRoute = () => {
   const { productId } = useParams();
   return (
-    <Product productId={productId} name="TTT2" />
+    <Product productId={productId} />
   );
 };
 

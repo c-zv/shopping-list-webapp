@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import StartingRoute from 'routes';
+import initStore from 'state';
 
-
-const ReactApp = () => {
-
-  return (
-    <React.StrictMode>
+const ReactApp = () => (
+  <React.StrictMode>
+    <Provider store={initStore()}>
       <BrowserRouter>
-          <StartingRoute />
+        <StartingRoute />
       </BrowserRouter>
-    </React.StrictMode>
-  );
-};
+    </Provider>
+  </React.StrictMode>
+);
 
 export default ReactApp;
