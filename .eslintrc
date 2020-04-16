@@ -1,11 +1,16 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "airbnb",
-    "plugin:react-hooks/recommended"
+    "airbnb"
   ],
   "ignorePatterns": ["webpack.common.js", "webpack.dev.js", "webpack.prod.js", "node_modules/"],
-  "rules": {},
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
   "env": {
     "browser": true,
     "node": true
