@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   NavLink, Link,
 } from 'react-router-dom';
@@ -22,5 +23,14 @@ const NavigationBar = ({ goTo }) => (
     </Navbar.Collapse>
   </Navbar>
 );
+
+NavigationBar.propTypes = {
+  goTo: PropTypes.shape({
+    HOME: PropTypes.func.isRequired,
+    PRODUCTS: PropTypes.func.isRequired,
+    SHOPPING_LISTS: PropTypes.func.isRequired,
+    SETTINGS: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default NavigationBar;
