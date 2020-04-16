@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import NavigationBar from 'components/NavigationBar';
+import StartingRoute from 'routes';
+
 
 const ReactApp = () => {
 
   return (
     <React.StrictMode>
       <BrowserRouter>
-        <NavigationBar />
+          <StartingRoute />
       </BrowserRouter>
     </React.StrictMode>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Product = ({ productId, name }) => {
-  return (
+const Product = ({ productId, name }) => (
     <div>
       <p>Current Product ({name}):</p>
       <p>

@@ -1,10 +1,8 @@
 import React from 'react';
-import { useRouteMatch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useProductsHook from './hooks';
-import styles from './products.scss';
 
-const Products = () => {
-  const { url } = useRouteMatch();
+const Products = ({ goTo }) => {
   const { products } = useProductsHook();
 
   return (
@@ -14,8 +12,8 @@ const Products = () => {
       </div>
       <ul>
         {products.map((prod) => (
-          <li>
-            <Link to={`${url}/${prod.id}`}>{prod.name}</Link>
+          <li key={prod.id}>
+            <Link to={goTo.PRODUCT(prod.id)}>{prod.name}</Link>
           </li>
         ))}
       </ul>
