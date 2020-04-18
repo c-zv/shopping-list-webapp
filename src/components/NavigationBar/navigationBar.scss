@@ -1,2 +1,21 @@
+.logo {
+  width: 3rem;
+  height: -webkit-fill-available;
+  background: url(~assets/logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+.layoutContent {
+  padding: 0 4%;
+  margin: auto;
+  min-width: 300px;
+  max-width: 1300px;
+  min-height: 400px;
+  width: auto;
+  background-color: #c7cace;
+}
 

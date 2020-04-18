@@ -6,7 +6,7 @@ import { actProducts } from 'state/products';
 const randomProduct = () => ({
   id: `${Math.round(Math.random() * 100000)}`,
   name: `name_${Math.round(Math.random() * 1000).toString()}`,
-  imageLink: 'http://placeimg.com/300/160/tech',
+  imageLink: 'http://placeimg.com/190/200/tech',
 });
 
 const useProductsHook = () => {

@@ -17,25 +17,25 @@ const navBarGoTo = {
   SETTINGS: () => PATH.SETTINGS,
 };
 
-const StartingRoute = () => (
-  <>
-    <NavigationBar goTo={navBarGoTo} />
+const startingRouter = (
+  <Switch>
+    <Route exact path={PATH.HOME}>
+      <HomeRoute />
+    </Route>
+    <Route path={PATH.PRODUCT.ALL}>
+      <ProductsRoute />
+    </Route>
+    <Route path={PATH.SHOPPING_LIST.ALL}>
+      <ShoppingListsRoute />
+    </Route>
+    <Route path={PATH.SETTINGS}>
+      <SettingsRoute />
+    </Route>
+  </Switch>
+);
 
-    <Switch>
-      <Route exact path={PATH.HOME}>
-        <HomeRoute />
-      </Route>
-      <Route path={PATH.PRODUCT.ALL}>
-        <ProductsRoute />
-      </Route>
-      <Route path={PATH.SHOPPING_LIST.ALL}>
-        <ShoppingListsRoute />
-      </Route>
-      <Route path={PATH.SETTINGS}>
-        <SettingsRoute />
-      </Route>
-    </Switch>
-  </>
+const StartingRoute = () => (
+  <NavigationBar goTo={navBarGoTo} router={startingRouter} />
 );
 
 export default StartingRoute;

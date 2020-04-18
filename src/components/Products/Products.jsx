@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  Container, Card, Row, Col,
-} from 'react-bootstrap';
+  Button, Card, Row, Col,
+} from 'antd';
 
 import styles from './products.scss';
 import useProductsHook from './hooks';
@@ -13,21 +13,27 @@ const Products = ({ goTo }) => {
   return (
     <>
       <div>
-        <button type="button" onClick={addProduct}> Create random product </button>
+        <Button type="primary" onClick={addProduct}>
+          Create random product
+        </Button>
       </div>
-      <Container fluid="xl">
-        <Row xs={1} sm={1} md={1} lg={2} xl={3} noGutters>
-          {products.map((prod) => (
-            <Col as={Card} className={styles.card} key={prod.id}>
-              <Card.Img className={styles.image} variant="top" src={prod.imageLink} />
-              <Card.Body as={Link} to={goTo.PRODUCT(prod.id)}>
-                <Card.Title>{prod.name}</Card.Title>
-              </Card.Body>
-            </Col>
-          ))}
-        </Row>
-      </Container>
 
+      <Row justify="start" gutter={[16, 16]}>
+        {products.map((prod) => (
+          <Col key={prod.id} justify="center">
+            <Link to={goTo.PRODUCT(prod.id)}>
+              <Card
+                className={styles.card}
+                hoverable
+                bordered
+                cover={<img alt="" src={prod.imageLink} className={styles.image} />}
+              >
+                {prod.name}
+              </Card>
+            </Link>
+          </Col>
+        ))}
+      </Row>
     </>
   );
 };

@@ -79,6 +79,24 @@ module.exports = merge(commonWebpack, {
           {loader: 'sass-loader'}
         ],
         include: /\.global\.scss$/
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {loader: MiniCssExtractPlugin.loader},
+          {loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              modifyVars: require("./src/ant-design-theming"),
+              javascriptEnabled: true
+            }
+          }
+        ]
       }
     ]
   }
