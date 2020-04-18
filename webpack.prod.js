@@ -91,6 +91,10 @@ module.exports = merge(commonWebpack, {
           },
           {
             loader: 'less-loader',
+            options: {
+              modifyVars: require("./src/ant-design-theming"),
+              javascriptEnabled: true
+            }
           }
         ]
       }
