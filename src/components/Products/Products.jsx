@@ -16,18 +16,19 @@ const Products = ({ goTo }) => {
         <button type="button" onClick={addProduct}> Create random product </button>
       </div>
       <Container fluid="xl">
-        <Row xs={1} sm={1} md={1} lg={2} xl={3} noGutters>
+        <Row xs={1} sm={2} md={3} lg={3} xl={5} noGutters>
           {products.map((prod) => (
-            <Col as={Card} className={styles.card} key={prod.id}>
-              <Card.Img className={styles.image} variant="top" src={prod.imageLink} />
-              <Card.Body as={Link} to={goTo.PRODUCT(prod.id)}>
-                <Card.Title>{prod.name}</Card.Title>
-              </Card.Body>
+            <Col key={prod.id}>
+              <Card text="white" bg="dark" className={styles.card}>
+                <Card.Img className={styles.image} variant="top" src={prod.imageLink} />
+                <Card.Body as={Link} to={goTo.PRODUCT(prod.id)}>
+                  <Card.Text>{prod.name}</Card.Text>
+                </Card.Body>
+              </Card>
             </Col>
           ))}
         </Row>
       </Container>
-
     </>
   );
 };
