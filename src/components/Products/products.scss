@@ -1,7 +1,11 @@
 .card {
+  margin: 0.8rem;
   max-width: 12rem;
   max-height: 18rem;
-  margin: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .image {
