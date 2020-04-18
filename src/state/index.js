@@ -6,14 +6,14 @@ const rootReducer = reducerProducts;
 const initState = {
   products: [
     {
-      id: 1,
+      id: '1',
       name: 'Dummy product 1',
       imageLink: 'http://placeimg.com/190/200/tech',
     },
   ],
   shoppingLists: [
     {
-      id: 1,
+      id: '1',
       name: 'My tech list',
     },
   ],
