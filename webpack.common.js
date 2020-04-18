@@ -11,7 +11,14 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              ['import', { libraryName: "antd", style: true }]
+            ]
+          }
+        }
       },
       {
         test: /\.(svg|png|jpg|gif)$/,
@@ -26,7 +33,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.scss'],
     alias: {
       assets: path.resolve(__dirname, 'src/assets/'),
       components: path.resolve(__dirname, 'src/components/'),
