@@ -1,6 +1,6 @@
 import { types } from './actions';
 
-const products = (state = {}, action) => {
+const reducerProducts = (state = {}, action) => {
   switch (action.type) {
     case types.ADD_PRODUCT:
       return {
@@ -12,4 +12,4 @@ const products = (state = {}, action) => {
   }
 };
 
-export default products;
+export default reducerProducts;

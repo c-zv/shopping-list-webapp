@@ -1,4 +1,5 @@
-import { actions as actProducts } from './actions';
+import { actionsProducts } from './actions';
+import selectorsProducts from './selectors';
 import reducerProducts from './reducers';
 
-export { actProducts, reducerProducts };
+export { actionsProducts, selectorsProducts, reducerProducts };

@@ -1,3 +1,3 @@
-import useProductHook from './ProductHook';
+import useProductHook from './useProductHook';
 
 export default useProductHook;

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { actProducts } from 'state/products';
+import { actionsProducts, selectorsProducts } from 'state/products';
 
 const randomProduct = () => ({
   id: `${Math.round(Math.random() * 100000)}`,
@@ -10,11 +10,11 @@ const randomProduct = () => ({
 });
 
 const useProductsHook = () => {
-  const products = useSelector((state) => state.products);
+  const products = useSelector(selectorsProducts.getProducts);
   const dispatch = useDispatch();
 
   const addProduct = useCallback(
-    () => (dispatch(actProducts.addProduct(randomProduct()))),
+    () => (dispatch(actionsProducts.addProduct(randomProduct()))),
     [dispatch],
   );
 
