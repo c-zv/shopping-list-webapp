@@ -1,14 +1,11 @@
 import { types } from './actions';
 
-const reducerProducts = (state = {}, action) => {
+const reducerProducts = (products = [], action) => {
   switch (action.type) {
     case types.ADD_PRODUCT:
-      return {
-        ...state,
-        products: [...state.products, action.payload],
-      };
+      return [...products, action.payload];
     default:
-      return state;
+      return products;
   }
 };
 

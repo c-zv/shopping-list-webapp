@@ -10,9 +10,9 @@ const getProductByIdCreator = () => createSelector(
   (products, productId) => products.find((prod) => prod.id === productId),
 );
 
-const selectors = {
+const selectorsProducts = {
   getProducts,
   getProductByIdCreator,
 };
 
-export default selectors;
+export default selectorsProducts;

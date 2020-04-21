@@ -1,29 +1,16 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { reducerProducts } from './products';
+import { reducerShopLists } from './shoppingLIsts';
 
-const rootReducer = reducerProducts;
-
-const initState = {
-  products: [
-    {
-      id: '1',
-      name: 'Dummy product 1',
-      imageLink: 'http://placeimg.com/190/200/tech',
-    },
-  ],
-  shoppingLists: [
-    {
-      id: '1',
-      name: 'My tech list',
-    },
-  ],
-};
+const rootReducer = combineReducers({
+  products: reducerProducts,
+  shoppingLists: reducerShopLists,
+});
 
 /* eslint-disable no-underscore-dangle */
 const initStore = () => {
   const store = createStore(
     rootReducer,
-    initState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   );
   if (process.env.NODE_ENV !== 'production' && module.hot) {
