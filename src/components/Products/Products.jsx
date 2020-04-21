@@ -12,7 +12,7 @@ const Products = ({ goTo }) => {
   const { products, addProduct } = useProductsHook();
   return (
     <>
-      <div>
+      <div className={styles.button_container}>
         <Button type="primary" onClick={addProduct}>
           Create random product
         </Button>

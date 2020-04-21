@@ -1,0 +1,16 @@
+.button_container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.card {
+  margin: 0.8rem;
+  width: 21rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+}
