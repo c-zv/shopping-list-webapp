@@ -1,30 +1,20 @@
-import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { actionsShopLists } from 'state/shoppingLists';
+import { useState } from 'react';
 
 const useShopListDrowerHook = () => {
-  const [showCreateDrower, setShowCreateDrower] = useState(false);
-  const dispatch = useDispatch();
-
-  const createShopList = useCallback(
-    (shopList) => {
-      const newShopList = {
-        name: shopList.name,
-        description: shopList.description,
-        id: `${Math.round(Math.random() * 100000)}`,
-        color: '#9C27B1',
-      };
-      dispatch(actionsShopLists.addShoppingList(newShopList));
-    },
-    [dispatch],
-  );
+  const [showCreateDrower, setShowCreateDrower] = useState({
+    visible: false,
+    shopListToEdit: undefined,
+  });
 
   const shopListDrowerCtrl = {
-    visible: showCreateDrower,
-    show: () => setShowCreateDrower(true),
-    close: () => setShowCreateDrower(false),
-    createShopList: (shopList) => createShopList(shopList),
+    visible: showCreateDrower.visible,
+    shopListToEdit: showCreateDrower.shopListToEdit,
+    open: (shopListToEdit = undefined) => (
+      setShowCreateDrower({ visible: true, shopListToEdit })
+    ),
+    close: () => (
+      setShowCreateDrower({ visible: false, shopListToEdit: undefined })
+    ),
   };
 
   return shopListDrowerCtrl;
