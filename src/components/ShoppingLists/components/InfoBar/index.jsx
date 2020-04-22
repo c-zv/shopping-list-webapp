@@ -5,37 +5,45 @@ import { MoreOutlined } from '@ant-design/icons';
 
 import styles from './infoBar.scss';
 
-const menu = (
-  <Menu>
-    <Menu.Item onClick={() => {console.log("Rename button!")}}>
-      Rename
-    </Menu.Item>
-    <Menu.Item onClick={() => {console.log("Del button!")}}>
-      Delete
-    </Menu.Item>
-    <Menu.Item onClick={() => {console.log("Copy button!")}}>
-      Make a copy
-    </Menu.Item>
-  </Menu>
-);
-
-const InfoBar = ({ color, countBought, countMissing }) => (
+const InfoBar = ({
+  shoppingList, openShopListDrower, createNewShopList, removeShopList,
+}) => (
   <div className={styles.bar}>
     <div className={styles.bar__badges}>
-      <Badge style={{ backgroundColor: styles.bought_color }} count={countBought} title="Number of bought products" />
-      <Badge style={{ backgroundColor: styles.missing_color }} count={countMissing} title="Number of missing products" />
+      <Badge style={{ backgroundColor: styles.bought_color }} count={33} title="Number of bought products" />
+      <Badge style={{ backgroundColor: styles.missing_color }} count={12} title="Number of missing products" />
     </div>
-    <div className={styles.bar__color} style={{ backgroundColor: color }} />
-    <Dropdown className={styles.bar__dropdown} overlay={menu} trigger={['click']}>
+    <div className={styles.bar__color} style={{ backgroundColor: shoppingList.color }} />
+    <Dropdown
+      className={styles.bar__dropdown}
+      trigger={['click']}
+      overlay={(
+        <Menu>
+          <Menu.Item onClick={() => (openShopListDrower(shoppingList))}>
+            Edit
+          </Menu.Item>
+          <Menu.Item onClick={() => (removeShopList(shoppingList.id))}>
+            Delete
+          </Menu.Item>
+          <Menu.Item onClick={() => (createNewShopList(shoppingList))}>
+            Make a copy
+          </Menu.Item>
+        </Menu>
+      )}
+    >
       <MoreOutlined />
     </Dropdown>
   </div>
 );
 
 InfoBar.propTypes = {
-  color: PropTypes.string.isRequired,
-  countBought: PropTypes.number.isRequired,
-  countMissing: PropTypes.number.isRequired,
+  shoppingList: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+  }).isRequired,
+  openShopListDrower: PropTypes.func.isRequired,
+  createNewShopList: PropTypes.func.isRequired,
+  removeShopList: PropTypes.func.isRequired,
 };
 
 export default InfoBar;
