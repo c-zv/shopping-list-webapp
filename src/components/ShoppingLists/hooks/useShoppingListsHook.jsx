@@ -1,25 +1,23 @@
-import { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { selectorsShopLists, actionsShopLists } from 'state/shoppingLIsts';
+import { selectorsShopLists } from 'state/shoppingLists';
+import useShopListDrowerHook from './useShopListDrowerHook';
+
+const generateRandomShopList = () => ({
+  id: `${Math.round(Math.random() * 100000)}`,
+  name: `SL_${Math.round(Math.random() * 1000).toString()}`,
+  color: '#9C27B0',
+  description: 'shopping list custom description',
+});
 
 const useShoppingListsHook = () => {
   const shopLists = useSelector(selectorsShopLists.getShopLists);
-  const dispatch = useDispatch();
 
-  const generateNewShopList = () => ({
-    id: `${Math.round(Math.random() * 100000)}`,
-    name: `SL_${Math.round(Math.random() * 1000).toString()}`,
-    color: '#9C27B0',
-    description: 'shopping list custom description',
-  });
+  const shopListDrowerCtrl = useShopListDrowerHook();
 
-  const addShopList = useCallback(
-    () => (dispatch(actionsShopLists.addShoppingList(generateNewShopList()))),
-    [dispatch],
-  );
+  const generateNewShopList = () => shopListDrowerCtrl.createShopList(generateRandomShopList());
 
-  return { shopLists, addShopList };
+  return { shopLists, generateNewShopList, shopListDrowerCtrl };
 };
 
 export default useShoppingListsHook;
