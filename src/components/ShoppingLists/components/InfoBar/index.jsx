@@ -13,6 +13,9 @@ const menu = (
     <Menu.Item onClick={() => {console.log("Del button!")}}>
       Delete
     </Menu.Item>
+    <Menu.Item onClick={() => {console.log("Copy button!")}}>
+      Make a copy
+    </Menu.Item>
   </Menu>
 );
 
