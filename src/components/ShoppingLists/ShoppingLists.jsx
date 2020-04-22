@@ -5,18 +5,24 @@ import {
 import Meta from 'antd/lib/card/Meta';
 
 import useShoppingListsHook from './hooks';
-import { InfoBar } from './components';
+import { InfoBar, ShopListDrower } from './components';
 import styles from './shoppingLists.scss';
 
 const ShoppingLists = () => {
-  const { shopLists, addShopList } = useShoppingListsHook();
+  const { shopLists, generateNewShopList, shopListDrowerCtrl } = useShoppingListsHook();
   return (
     <>
       <div className={styles.button_container}>
-        <Button type="primary" onClick={addShopList}>
+        <Button type="primary" onClick={generateNewShopList} className={styles.button_container__button}>
           Create random Shop list
         </Button>
+        <Button type="primary" onClick={shopListDrowerCtrl.show} className={styles.button_container__button}>
+          New list
+        </Button>
       </div>
+
+      <ShopListDrower drowerCtrl={shopListDrowerCtrl} />
+
       <Row justify="start" gutter={[16, 16]}>
         {shopLists.map((sl) => (
           <Col justify="center" key={sl.id}>
