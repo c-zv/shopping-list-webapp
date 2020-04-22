@@ -9,29 +9,43 @@ import { InfoBar, ShopListDrower } from './components';
 import styles from './shoppingLists.scss';
 
 const ShoppingLists = () => {
-  const { shopLists, generateNewShopList, shopListDrowerCtrl } = useShoppingListsHook();
+  const { shopListsCtrl, shopListDrowerCtrl } = useShoppingListsHook();
   return (
     <>
       <div className={styles.button_container}>
-        <Button type="primary" onClick={generateNewShopList} className={styles.button_container__button}>
+        <Button type="primary" onClick={() => shopListsCtrl.createNewShopList()} className={styles.button_container__button}>
           Create random Shop list
         </Button>
-        <Button type="primary" onClick={shopListDrowerCtrl.show} className={styles.button_container__button}>
+        <Button type="primary" onClick={() => shopListDrowerCtrl.open()} className={styles.button_container__button}>
           New list
         </Button>
       </div>
 
-      <ShopListDrower drowerCtrl={shopListDrowerCtrl} />
+      <ShopListDrower
+        drowerCtrl={shopListDrowerCtrl}
+        submitShopList={
+          shopListDrowerCtrl.shopListToEdit
+            ? shopListsCtrl.editShopList
+            : shopListsCtrl.createNewShopList
+          }
+      />
 
       <Row justify="start" gutter={[16, 16]}>
-        {shopLists.map((sl) => (
+        {shopListsCtrl.shopLists.map((sl) => (
           <Col justify="center" key={sl.id}>
             <Card
               size="small"
               hoverable
               bordered={false}
               className={styles.card}
-              cover={<InfoBar color={sl.color} countBought={2} countMissing={4} />}
+              cover={(
+                <InfoBar
+                  shoppingList={sl}
+                  openShopListDrower={shopListDrowerCtrl.open}
+                  createNewShopList={shopListsCtrl.createNewShopList}
+                  removeShopList={shopListsCtrl.removeShopList}
+                />
+              )}
             >
               <Meta
                 title={sl.name}
