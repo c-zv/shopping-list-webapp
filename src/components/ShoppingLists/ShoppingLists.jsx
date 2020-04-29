@@ -5,11 +5,11 @@ import {
 import Meta from 'antd/lib/card/Meta';
 
 import useShoppingListsHook from './hooks';
-import { InfoBar, ShopListDrower } from './components';
+import { InfoBar, ShopListDrawer } from './components';
 import styles from './shoppingLists.scss';
 
 const ShoppingLists = () => {
-  const { shopListsCtrl, shopListDrowerCtrl } = useShoppingListsHook();
+  const { shopListsCtrl, shopListDrawerCtrl } = useShoppingListsHook();
   return (
     <>
       <div className={styles.button_container}>
@@ -21,10 +21,10 @@ const ShoppingLists = () => {
         </Button>
       </div>
 
-      <ShopListDrower
-        drowerCtrl={shopListDrowerCtrl}
+      <ShopListDrawer
+        drawerCtrl={shopListDrawerCtrl}
         submitShopList={
-          shopListDrowerCtrl.shopListToEdit
+          shopListDrawerCtrl.shopListToEdit
             ? shopListsCtrl.editShopList
             : shopListsCtrl.createNewShopList
           }
@@ -41,7 +41,7 @@ const ShoppingLists = () => {
               cover={(
                 <InfoBar
                   shoppingList={sl}
-                  openShopListDrower={shopListDrowerCtrl.open}
+                  openShopListDrawer={shopListDrawerCtrl.open}
                   createNewShopList={shopListsCtrl.createNewShopList}
                   removeShopList={shopListsCtrl.removeShopList}
                 />

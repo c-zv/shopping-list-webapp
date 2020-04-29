@@ -6,7 +6,7 @@ import { MoreOutlined } from '@ant-design/icons';
 import styles from './infoBar.scss';
 
 const InfoBar = ({
-  shoppingList, openShopListDrower, createNewShopList, removeShopList,
+  shoppingList, openShopListDrawer, createNewShopList, removeShopList,
 }) => (
   <div className={styles.bar}>
     <div className={styles.bar__badges}>
@@ -19,7 +19,7 @@ const InfoBar = ({
       trigger={['click']}
       overlay={(
         <Menu>
-          <Menu.Item onClick={() => (openShopListDrower(shoppingList))}>
+          <Menu.Item onClick={() => (openShopListDrawer(shoppingList))}>
             Edit
           </Menu.Item>
           <Menu.Item onClick={() => (removeShopList(shoppingList.id))}>
@@ -41,7 +41,7 @@ InfoBar.propTypes = {
     id: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
   }).isRequired,
-  openShopListDrower: PropTypes.func.isRequired,
+  openShopListDrawer: PropTypes.func.isRequired,
   createNewShopList: PropTypes.func.isRequired,
   removeShopList: PropTypes.func.isRequired,
 };
