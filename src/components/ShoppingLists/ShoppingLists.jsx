@@ -13,10 +13,10 @@ const ShoppingLists = () => {
   return (
     <>
       <div className={styles.button_container}>
-        <Button type="primary" onClick={() => shopListsCtrl.createNewShopList()} className={styles.button_container__button}>
+        <Button type="primary" onClick={() => shopListsCtrl.createNewShopList()} className={styles.button_container__button} data-testid="randomListBtn">
           Create random Shop list
         </Button>
-        <Button type="primary" onClick={() => shopListDrowerCtrl.open()} className={styles.button_container__button}>
+        <Button type="primary" onClick={() => shopListDrawerCtrl.open()} className={styles.button_container__button} data-testid="newListBtn">
           New list
         </Button>
       </div>
@@ -30,7 +30,7 @@ const ShoppingLists = () => {
           }
       />
 
-      <Row justify="start" gutter={[16, 16]}>
+      <Row justify="start" gutter={[16, 16]} data-testid="shopListCards">
         {shopListsCtrl.shopLists.map((sl) => (
           <Col justify="center" key={sl.id}>
             <Card
@@ -46,6 +46,7 @@ const ShoppingLists = () => {
                   removeShopList={shopListsCtrl.removeShopList}
                 />
               )}
+              data-testid="card"
             >
               <Meta
                 title={sl.name}
