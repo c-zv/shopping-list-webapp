@@ -39,6 +39,7 @@ module.exports = {
       components: path.resolve(__dirname, 'src/components/'),
       routes: path.resolve(__dirname, 'src/routes/'),
       state: path.resolve(__dirname, 'src/state/'),
+      utils: path.resolve(__dirname, 'src/utils/'),
     }
   }
 };
