@@ -2,13 +2,13 @@ import { createStore, combineReducers } from 'redux';
 import { reducerProducts } from './products';
 import { reducerShopLists } from './shoppingLists';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   products: reducerProducts,
   shoppingLists: reducerShopLists,
 });
 
 /* eslint-disable no-underscore-dangle */
-const initStore = () => {
+export const initStore = () => {
   const store = createStore(
     rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -19,5 +19,3 @@ const initStore = () => {
   return store;
 };
 /* eslint-enable */
-
-export default initStore;

@@ -5,32 +5,32 @@ import {
 import Meta from 'antd/lib/card/Meta';
 
 import useShoppingListsHook from './hooks';
-import { InfoBar, ShopListDrower } from './components';
+import { InfoBar, ShopListDrawer } from './components';
 import styles from './shoppingLists.scss';
 
 const ShoppingLists = () => {
-  const { shopListsCtrl, shopListDrowerCtrl } = useShoppingListsHook();
+  const { shopListsCtrl, shopListDrawerCtrl } = useShoppingListsHook();
   return (
     <>
       <div className={styles.button_container}>
-        <Button type="primary" onClick={() => shopListsCtrl.createNewShopList()} className={styles.button_container__button}>
+        <Button type="primary" onClick={() => shopListsCtrl.createNewShopList()} className={styles.button_container__button} data-testid="randomListBtn">
           Create random Shop list
         </Button>
-        <Button type="primary" onClick={() => shopListDrowerCtrl.open()} className={styles.button_container__button}>
+        <Button type="primary" onClick={() => shopListDrawerCtrl.open()} className={styles.button_container__button} data-testid="newListBtn">
           New list
         </Button>
       </div>
 
-      <ShopListDrower
-        drowerCtrl={shopListDrowerCtrl}
+      <ShopListDrawer
+        drawerCtrl={shopListDrawerCtrl}
         submitShopList={
-          shopListDrowerCtrl.shopListToEdit
+          shopListDrawerCtrl.shopListToEdit
             ? shopListsCtrl.editShopList
             : shopListsCtrl.createNewShopList
           }
       />
 
-      <Row justify="start" gutter={[16, 16]}>
+      <Row justify="start" gutter={[16, 16]} data-testid="shopListCards">
         {shopListsCtrl.shopLists.map((sl) => (
           <Col justify="center" key={sl.id}>
             <Card
@@ -41,11 +41,12 @@ const ShoppingLists = () => {
               cover={(
                 <InfoBar
                   shoppingList={sl}
-                  openShopListDrower={shopListDrowerCtrl.open}
+                  openShopListDrawer={shopListDrawerCtrl.open}
                   createNewShopList={shopListsCtrl.createNewShopList}
                   removeShopList={shopListsCtrl.removeShopList}
                 />
               )}
+              data-testid="card"
             >
               <Meta
                 title={sl.name}

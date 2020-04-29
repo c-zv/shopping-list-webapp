@@ -4,7 +4,7 @@ import {
   Drawer, Form, Input, Button, Select,
 } from 'antd';
 
-import styles from './shopListDrower.scss';
+import styles from './shopListDrawer.scss';
 
 const categories = [
   {
@@ -21,29 +21,29 @@ const categories = [
   },
 ];
 
-const ShopListDrower = ({ drowerCtrl, submitShopList }) => {
+const ShopListDrawer = ({ drawerCtrl, submitShopList }) => {
   const [form] = Form.useForm();
 
   const submitForm = useCallback((values) => {
-    const updatedShopList = { ...drowerCtrl.shopListToEdit, ...values };
+    const updatedShopList = { ...drawerCtrl.shopListToEdit, ...values };
     submitShopList(updatedShopList);
     form.resetFields();
-    drowerCtrl.close();
+    drawerCtrl.close();
   },
-  [submitShopList, drowerCtrl, form]);
+  [submitShopList, drawerCtrl, form]);
 
   useEffect(
     () => (
-      drowerCtrl.shopListToEdit
-        ? form.setFieldsValue(drowerCtrl.shopListToEdit)
+      drawerCtrl.shopListToEdit
+        ? form.setFieldsValue(drawerCtrl.shopListToEdit)
         : form.resetFields()
     ),
-    [form, drowerCtrl.shopListToEdit],
+    [form, drawerCtrl.shopListToEdit],
   );
 
   let titleText;
   let submitText;
-  if (drowerCtrl.shopListToEdit) {
+  if (drawerCtrl.shopListToEdit) {
     titleText = 'Edit shopping list';
     submitText = 'Update';
   } else {
@@ -57,8 +57,8 @@ const ShopListDrower = ({ drowerCtrl, submitShopList }) => {
       placement="right"
       closable
       getContainer={false}
-      onClose={drowerCtrl.close}
-      visible={drowerCtrl.visible}
+      onClose={drawerCtrl.close}
+      visible={drawerCtrl.visible}
     >
       <Form form={form} layout="vertical" size="middle" onFinish={submitForm}>
 
@@ -76,18 +76,18 @@ const ShopListDrower = ({ drowerCtrl, submitShopList }) => {
           hasFeedback
           rules={[{ required: true, message: 'Please select a category' }]}
         >
-          <Select placeholder="Category">
+          <Select placeholder="Category" data-testid="selectedOption">
             {categories.map((cat) => (
-              <Select.Option value={cat.color}>{cat.name}</Select.Option>
+              <Select.Option key={cat.name} value={cat.color}>{cat.name}</Select.Option>
             ))}
           </Select>
         </Form.Item>
 
         <div className={styles.buttons}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" data-testid="submitButton">
             {submitText}
           </Button>
-          <Button type="default" onClick={() => form.resetFields()}>
+          <Button type="default" onClick={() => form.resetFields()} data-testid="resetButton">
             Reset
           </Button>
         </div>
@@ -97,8 +97,8 @@ const ShopListDrower = ({ drowerCtrl, submitShopList }) => {
   );
 };
 
-ShopListDrower.propTypes = {
-  drowerCtrl: PropTypes.shape({
+ShopListDrawer.propTypes = {
+  drawerCtrl: PropTypes.shape({
     close: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired,
     shopListToEdit: PropTypes.shape({}),
@@ -106,4 +106,4 @@ ShopListDrower.propTypes = {
   submitShopList: PropTypes.func.isRequired,
 };
 
-export default ShopListDrower;
+export default ShopListDrawer;

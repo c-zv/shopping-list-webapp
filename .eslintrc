@@ -1,19 +1,31 @@
 {
   "parser": "babel-eslint",
   "extends": [
-    "airbnb"
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:jest/recommended",
+    "plugin:testing-library/react"
   ],
   "ignorePatterns": ["webpack.common.js", "webpack.dev.js", "webpack.prod.js", "node_modules/"],
   "plugins": [
-    "react-hooks"
+    "jest",
+    "testing-library"
   ],
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+
   },
+  "overrides": [
+    {
+      "files": ["*.test.js","*.spec.js"],
+      "rules": {
+        "react/jsx-filename-extension": "off"
+      }
+    }
+  ],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "settings": {
     "import/resolver": {
@@ -22,7 +34,8 @@
           ["assets", "./src/assets/"],
           ["components", "./src/components/"],
           ["routes", "./src/routes/"],
-          ["state", "./src/state/"]
+          ["state", "./src/state/"],
+          ["utils", "./src/utils/"]
         ],
         "extensions": [".js", ".jsx", ".json"]
       }

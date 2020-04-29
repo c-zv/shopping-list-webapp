@@ -1,4 +1,4 @@
 import InfoBar from './InfoBar';
-import ShopListDrower from './ShopListDrower';
+import ShopListDrawer from './ShopListDrawer';
 
-export { InfoBar, ShopListDrower };
+export { InfoBar, ShopListDrawer };

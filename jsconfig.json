@@ -6,7 +6,8 @@
       "assets/*": ["src/assets/*"],
       "components/*": ["src/components/*"],
       "routes/*": ["src/routes/*"],
-      "state/*": ["src/state/*"]
+      "state/*": ["src/state/*"],
+      "utils/*": ["src/utils/*"]
     }
   },
   "include": ["src"],

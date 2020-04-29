@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { actionsShopLists, selectorsShopLists } from 'state/shoppingLists';
-import useShopListDrowerHook from './useShopListDrowerHook';
+import useShopListDrawerHook from './useShopListDrawerHook';
 
 const generateRandomShopList = () => ({
   id: `${Math.round(Math.random() * 100000)}`,
@@ -49,9 +49,9 @@ const useShoppingListsHook = () => {
     removeShopList: (id) => dispatchDeleteShopList(id),
   };
 
-  const shopListDrowerCtrl = useShopListDrowerHook();
+  const shopListDrawerCtrl = useShopListDrawerHook();
 
-  return { shopListsCtrl, shopListDrowerCtrl };
+  return { shopListsCtrl, shopListDrawerCtrl };
 };
 
 export default useShoppingListsHook;
