@@ -8,14 +8,17 @@ import styles from './shopListDrawer.scss';
 
 const categories = [
   {
+    id: 1,
     name: 'Tech',
     color: '#8da0cb',
   },
   {
+    id: 2,
     name: 'Food',
     color: '#fc8d62',
   },
   {
+    id: 3,
     name: 'Regular',
     color: '#66c2a5',
   },
@@ -71,14 +74,14 @@ const ShopListDrawer = ({ drawerCtrl, submitShopList }) => {
         </Form.Item>
 
         <Form.Item
-          name="color"
+          name="category_id"
           label="Category"
           hasFeedback
           rules={[{ required: true, message: 'Please select a category' }]}
         >
           <Select placeholder="Category" data-testid="selectedOption">
             {categories.map((cat) => (
-              <Select.Option key={cat.name} value={cat.color}>{cat.name}</Select.Option>
+              <Select.Option key={cat.id} value={cat.id}>{cat.name}</Select.Option>
             ))}
           </Select>
         </Form.Item>
