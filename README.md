@@ -11,9 +11,11 @@ This project was created for learning purposes where I can explore new tecnologi
 - Webpack
 - Babel
 - ESLint
+- Axios
 - React
 - React-router
 - Redux
+- Redux-saga
 - Reselect
 - SASS modules
 - Ant Design
@@ -49,7 +51,7 @@ Also includes all configuration files for Webpack, Babel, ESLint and VSCode.
 - **assets** folder - logos, images, etc.
 - **components** folder - contains react components.
 - **routes** folder - defines and handles the routing logic. Is organized by pages/views in the application.
-- **state** folder - defines state related logic (actions, reducers, etc.). Is organized by resource type (ex: products, shopping lists, etc.).
+- **state** folder - defines state related logic (actions, reducers, sagas, etc.). Is organized by resource type (ex: products, shopping lists, etc.).
 
 ### Components folder (**/src/components**)
 Each component is defined in a separate folder which is named as the corresponding component (capitalized).
