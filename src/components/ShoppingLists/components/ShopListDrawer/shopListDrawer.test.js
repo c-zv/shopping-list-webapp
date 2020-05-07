@@ -31,7 +31,6 @@ describe('ShoppingList Test Suite', () => {
     const titleText = 'New shopping list';
     expect(getByText(titleText)).toBeDefined();
     const submitButton = getByTestId('submitButton');
-    // console.log("---> Subm button: ", submitButton);
     expect(submitButton).toHaveTextContent('Create');
 
     const name = getByLabelText('Name');
@@ -51,7 +50,7 @@ describe('ShoppingList Test Suite', () => {
     const dummyShopList = {
       name: 'Dummy Name',
       description: 'dummy description',
-      color: '#8da0cb', // corresponds to 'Tech' category name
+      category_id: 1, // corresponds to 'Tech' category name
     };
     const dummyProps = generateDummyProps(true, dummyShopList);
     const { getByText, getByLabelText, getByTestId } = render(
