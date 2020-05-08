@@ -19,6 +19,8 @@ This project was created for learning purposes where I can explore new tecnologi
 - Reselect
 - SASS modules
 - Ant Design
+- Jest
+- React Testing Library
 
 ## Project configurations
 ### Webpack
@@ -52,6 +54,7 @@ Also includes all configuration files for Webpack, Babel, ESLint and VSCode.
 - **components** folder - contains react components.
 - **routes** folder - defines and handles the routing logic. Is organized by pages/views in the application.
 - **state** folder - defines state related logic (actions, reducers, sagas, etc.). Is organized by resource type (ex: products, shopping lists, etc.).
+- **utils** folder - contains shared helpers.
 
 ### Components folder (**/src/components**)
 Each component is defined in a separate folder which is named as the corresponding component (capitalized).
@@ -59,13 +62,15 @@ Each component is defined in a separate folder which is named as the correspondi
 For a component named SimpleComponent a typical structure is:
 
 
-    SimpleComponent/            -> folder which is named as the corresponding component (capitalized);
-      index.jsx                 -> exports the SimpleComponent;
-      SimpleComponent.jsx       -> SimpleComponent should be defined here;
-      simpleComponent.scss      -> scss module for SimpleComponent;
-      components/               -> subcomponents used by SimpleComponent (cannot have subcomponents to avoid deep nesting);
-        index.jsx               -> exports all subcomponents;
-        AuxComponent/           -> example of auxiliar component used by SimpleComponent. Follows the same structure as main component, but without subcomponents;
-      hooks/                    -> folder with hooks used by SimpleComponent;
-        index.jsx               -> exports useSimpleComponentHook;
-        useSimpleComponentHook  -> main hook used by SimpleComponent. Typically will import and use other hooks, so the component only needs to import the main hook;
+    SimpleComponent/                    -> folder which is named as the corresponding component (capitalized);
+      index.jsx                         -> exports the SimpleComponent;
+      SimpleComponent.jsx               -> SimpleComponent should be defined here;
+      simpleComponent.scss              -> scss module for SimpleComponent;
+      simpleComponent.test.js           -> tests for SimpleComponent;
+      components/                       -> subcomponents used by SimpleComponent (cannot have subcomponents to avoid deep nesting);
+        index.jsx                       -> exports all subcomponents;
+        AuxComponent/                   -> example of auxiliar component used by SimpleComponent. Follows the same structure as main component, but without subcomponents to avoid deep nestings;
+      hooks/                            -> folder with hooks used by SimpleComponent;
+        index.jsx                       -> exports useSimpleComponentHook;
+        useSimpleComponentHook.jsx      -> main hook used by SimpleComponent. Typically will import and use other hooks, so the component only needs to import the main hook;
+        useSimpleComponentHook.test.js  -> tests for useSimpleComponentHook
