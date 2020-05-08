@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 
-import { apiShopLists } from 'utils/api';
+import api from 'utils/api';
 import { types, actionsShopLists } from './actions';
 
 
@@ -13,7 +13,7 @@ const showGlobalNotification = (errorMessage) => {
 
 function* requestShopListsAll() {
   try {
-    const result = yield call(apiShopLists.getAll);
+    const result = yield call(api.shopLists.getAll);
     yield put(actionsShopLists.shopListAll.requestSuccess(result.data));
   } catch (error) {
     yield put(actionsShopLists.shopListAll.requestFail());
@@ -24,7 +24,7 @@ function* requestShopListsAll() {
 
 function* requestShopListsOne(action) {
   try {
-    const result = yield call(apiShopLists.getOne, action.payload);
+    const result = yield call(api.shopLists.getOne, action.payload);
     yield put(actionsShopLists.shopListOne.requestSuccess(result.data));
   } catch (error) {
     yield put(actionsShopLists.shopListOne.requestFail());
@@ -35,7 +35,7 @@ function* requestShopListsOne(action) {
 
 function* requestShopListsCreate(action) {
   try {
-    yield call(apiShopLists.create, action.payload);
+    yield call(api.shopLists.create, action.payload);
     yield put(actionsShopLists.shopListCreate.requestSuccess());
     yield put(actionsShopLists.shopListAll.request());
   } catch (error) {
@@ -47,7 +47,7 @@ function* requestShopListsCreate(action) {
 
 function* requestShopListsUpdate(action) {
   try {
-    yield call(apiShopLists.update, action.payload.id, action.payload.shopList);
+    yield call(api.shopLists.update, action.payload.id, action.payload.shopList);
     yield put(actionsShopLists.shopListUpdate.requestSuccess());
     yield put(actionsShopLists.shopListAll.request());
   } catch (error) {
@@ -59,7 +59,7 @@ function* requestShopListsUpdate(action) {
 
 function* requestShopListsDelete(action) {
   try {
-    yield call(apiShopLists.delete, action.payload);
+    yield call(api.shopLists.delete, action.payload);
     yield put(actionsShopLists.shopListDelete.requestSuccess());
     yield put(actionsShopLists.shopListAll.request());
   } catch (error) {

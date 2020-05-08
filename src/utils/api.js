@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-export const generateActionsForApiRequest = (actionName) => ({
-  REQUEST: `${actionName}_REQUEST`,
-  REQUEST_SUCCESS: `${actionName}_REQUEST_SUCCESS`,
-  REQUEST_FAIL: `${actionName}_REQUEST_FAIL`,
-});
-
 
 const api = axios.create({
   baseURL: 'http://localhost:4000/api',
@@ -23,3 +17,4 @@ export const apiShopLists = {
 export const apiCategories = {
   getAll: () => (api.get('/categories')),
 };
+
