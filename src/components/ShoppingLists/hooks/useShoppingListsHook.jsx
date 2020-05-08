@@ -1,52 +1,44 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { actionsShopLists, selectorsShopLists } from 'state/shoppingLists';
+import { actionsShopListCategories } from 'state/shoppingListCategories';
 import useShopListDrawerHook from './useShopListDrawerHook';
 
-const generateRandomShopList = () => ({
-  id: `${Math.round(Math.random() * 100000)}`,
-  name: `SL_${Math.round(Math.random() * 1000).toString()}`,
-  color: '#9C27B0',
-  description: 'shopping list custom description',
-});
-
 const useShoppingListsHook = () => {
-  const shopLists = useSelector(selectorsShopLists.getShopLists);
+  const shopLists = useSelector(selectorsShopLists.shopListsAll);
   const dispatch = useDispatch();
 
-  const dispatchAddShopList = useCallback(
+  useEffect(
+    () => {
+      dispatch(actionsShopLists.shopListAll.request());
+      dispatch(actionsShopListCategories.categoriesAll.request());
+    },
+    [dispatch],
+  );
+
+  const dispatchCreateShopList = useCallback(
     (shopList) => {
-      const newShopList = {
-        name: shopList.name,
-        description: shopList.description,
-        id: `${Math.round(Math.random() * 100000)}`,
-        color: shopList.color,
-      };
-      dispatch(actionsShopLists.addShoppingList(newShopList));
+      dispatch(actionsShopLists.shopListCreate.request(shopList));
     },
     [dispatch],
   );
 
   const dispatchEditShopList = useCallback(
-    (shopList) => dispatch(actionsShopLists.editShoppingList(shopList)),
+    (shopList) => dispatch(actionsShopLists.shopListUpdate.request(shopList.id, shopList)),
     [dispatch],
   );
 
   const dispatchDeleteShopList = useCallback(
-    (id) => dispatch(actionsShopLists.deleteShoppingList(id)),
+    (id) => dispatch(actionsShopLists.shopListDelete.request(id)),
     [dispatch],
   );
 
   const shopListsCtrl = {
     shopLists,
-    createNewShopList: (shopList = undefined) => (
-      shopList ? dispatchAddShopList(shopList) : dispatchAddShopList(generateRandomShopList())
-    ),
-    editShopList: (shopList) => (
-      dispatchEditShopList(shopList)
-    ),
-    removeShopList: (id) => dispatchDeleteShopList(id),
+    dispatchCreateShopList,
+    dispatchEditShopList,
+    dispatchDeleteShopList,
   };
 
   const shopListDrawerCtrl = useShopListDrawerHook();

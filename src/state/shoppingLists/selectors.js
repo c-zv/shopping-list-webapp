@@ -1,18 +1,16 @@
-import { createSelector } from 'reselect';
 
-const getShopLists = (state) => state.shoppingLists;
-
-const getShopListByIdCreator = () => (createSelector(
-  [
-    getShopLists,
-    (_, shopListId) => shopListId,
-  ],
-  (shopLists, shopListId) => shopLists.find((sl) => sl.id === shopListId),
-));
+const shopListsAll = (state) => state.shoppingLists.all;
+const shopListsOne = (state) => state.shoppingLists.one;
+const shopListsCreate = (state) => state.shoppingLists.create;
+const shopListsUpdate = (state) => state.shoppingLists.update;
+const shopListsDelete = (state) => state.shoppingLists.delete;
 
 const selectorsShopLists = {
-  getShopLists,
-  getShopListByIdCreator,
+  shopListsAll,
+  shopListsOne,
+  shopListsCreate,
+  shopListsUpdate,
+  shopListsDelete,
 };
 
 export default selectorsShopLists;

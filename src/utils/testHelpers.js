@@ -5,9 +5,8 @@
 */
 
 import React from 'react';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { rootReducer } from 'state';
+import { initStore } from 'state';
 
 export const testsInitSetup = () => {
   // mock matchMedia used by some components. For more details check:
@@ -29,7 +28,27 @@ export const testsInitSetup = () => {
 
 export const withReduxWrapper = (
   component,
-  { initialState, store = createStore(rootReducer, initialState) } = {},
+  { initialState, store = initStore(initialState) } = {},
 ) => (
   <Provider store={store}>{component}</Provider>
 );
+
+export const mocks = {
+  categories: [
+    {
+      id: 1,
+      name: 'Tech',
+      color: '#8da0cb',
+    },
+    {
+      id: 2,
+      name: 'Food',
+      color: '#fc8d62',
+    },
+    {
+      id: 3,
+      name: 'Regular',
+      color: '#66c2a5',
+    },
+  ],
+};

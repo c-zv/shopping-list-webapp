@@ -1,55 +1,16 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Drawer, Form, Input, Button, Select,
 } from 'antd';
 
 import styles from './shopListDrawer.scss';
-
-const categories = [
-  {
-    name: 'Tech',
-    color: '#8da0cb',
-  },
-  {
-    name: 'Food',
-    color: '#fc8d62',
-  },
-  {
-    name: 'Regular',
-    color: '#66c2a5',
-  },
-];
+import useShopListDrawerHook from './useShopListDrawerHook';
 
 const ShopListDrawer = ({ drawerCtrl, submitShopList }) => {
-  const [form] = Form.useForm();
-
-  const submitForm = useCallback((values) => {
-    const updatedShopList = { ...drawerCtrl.shopListToEdit, ...values };
-    submitShopList(updatedShopList);
-    form.resetFields();
-    drawerCtrl.close();
-  },
-  [submitShopList, drawerCtrl, form]);
-
-  useEffect(
-    () => (
-      drawerCtrl.shopListToEdit
-        ? form.setFieldsValue(drawerCtrl.shopListToEdit)
-        : form.resetFields()
-    ),
-    [form, drawerCtrl.shopListToEdit],
-  );
-
-  let titleText;
-  let submitText;
-  if (drawerCtrl.shopListToEdit) {
-    titleText = 'Edit shopping list';
-    submitText = 'Update';
-  } else {
-    titleText = 'New shopping list';
-    submitText = 'Create';
-  }
+  const {
+    form, submitForm, categories, titleText, submitText,
+  } = useShopListDrawerHook(drawerCtrl, submitShopList);
 
   return (
     <Drawer
@@ -71,14 +32,14 @@ const ShopListDrawer = ({ drawerCtrl, submitShopList }) => {
         </Form.Item>
 
         <Form.Item
-          name="color"
+          name="category_id"
           label="Category"
           hasFeedback
           rules={[{ required: true, message: 'Please select a category' }]}
         >
           <Select placeholder="Category" data-testid="selectedOption">
             {categories.map((cat) => (
-              <Select.Option key={cat.name} value={cat.color}>{cat.name}</Select.Option>
+              <Select.Option key={cat.id} value={cat.id}>{cat.name}</Select.Option>
             ))}
           </Select>
         </Form.Item>

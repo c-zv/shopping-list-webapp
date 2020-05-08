@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, cleanup } from '@testing-library/react';
-import { testsInitSetup } from 'utils/testHelpers';
+import { testsInitSetup, withReduxWrapper, mocks } from 'utils/testHelpers';
 
 import ShopListDrawer from './ShopListDrawer';
 
@@ -22,16 +22,17 @@ describe('ShoppingList Test Suite', () => {
   it('with no shopListToEdit should show form for New shopping list ', () => {
     const dummyProps = generateDummyProps(true);
     const { getByText, getByLabelText, getByTestId } = render(
-      <ShopListDrawer
-        drawerCtrl={dummyProps.drawerCtrl}
-        submitShopList={dummyProps.submitShopList}
-      />,
+      withReduxWrapper(
+        <ShopListDrawer
+          drawerCtrl={dummyProps.drawerCtrl}
+          submitShopList={dummyProps.submitShopList}
+        />,
+      ),
     );
 
     const titleText = 'New shopping list';
     expect(getByText(titleText)).toBeDefined();
     const submitButton = getByTestId('submitButton');
-    // console.log("---> Subm button: ", submitButton);
     expect(submitButton).toHaveTextContent('Create');
 
     const name = getByLabelText('Name');
@@ -47,18 +48,28 @@ describe('ShoppingList Test Suite', () => {
     expect(category).toHaveDisplayValue('');
   });
 
-  it('with shopListToEdit should show form for Edit shopping list ', () => {
+  it('with shopListToEdit should show form for Edit shopping list ', async () => {
     const dummyShopList = {
       name: 'Dummy Name',
       description: 'dummy description',
-      color: '#8da0cb', // corresponds to 'Tech' category name
+      category_id: 1, // corresponds to 'Tech' category name
+    };
+    const initState = {
+      shoppingListCategories: {
+        all: {
+          data: mocks.categories,
+        },
+      },
     };
     const dummyProps = generateDummyProps(true, dummyShopList);
     const { getByText, getByLabelText, getByTestId } = render(
-      <ShopListDrawer
-        drawerCtrl={dummyProps.drawerCtrl}
-        submitShopList={dummyProps.submitShopList}
-      />,
+      withReduxWrapper(
+        <ShopListDrawer
+          drawerCtrl={dummyProps.drawerCtrl}
+          submitShopList={dummyProps.submitShopList}
+        />,
+        { initialState: initState },
+      ),
     );
 
     const titleText = 'Edit shopping list';
