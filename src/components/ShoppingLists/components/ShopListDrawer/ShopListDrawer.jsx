@@ -1,58 +1,16 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Drawer, Form, Input, Button, Select,
 } from 'antd';
 
 import styles from './shopListDrawer.scss';
-
-const categories = [
-  {
-    id: 1,
-    name: 'Tech',
-    color: '#8da0cb',
-  },
-  {
-    id: 2,
-    name: 'Food',
-    color: '#fc8d62',
-  },
-  {
-    id: 3,
-    name: 'Regular',
-    color: '#66c2a5',
-  },
-];
+import useShopListDrawerHook from './useShopListDrawerHook';
 
 const ShopListDrawer = ({ drawerCtrl, submitShopList }) => {
-  const [form] = Form.useForm();
-
-  const submitForm = useCallback((values) => {
-    const updatedShopList = { ...drawerCtrl.shopListToEdit, ...values };
-    submitShopList(updatedShopList);
-    form.resetFields();
-    drawerCtrl.close();
-  },
-  [submitShopList, drawerCtrl, form]);
-
-  useEffect(
-    () => (
-      drawerCtrl.shopListToEdit
-        ? form.setFieldsValue(drawerCtrl.shopListToEdit)
-        : form.resetFields()
-    ),
-    [form, drawerCtrl.shopListToEdit],
-  );
-
-  let titleText;
-  let submitText;
-  if (drawerCtrl.shopListToEdit) {
-    titleText = 'Edit shopping list';
-    submitText = 'Update';
-  } else {
-    titleText = 'New shopping list';
-    submitText = 'Create';
-  }
+  const {
+    form, submitForm, categories, titleText, submitText,
+  } = useShopListDrawerHook(drawerCtrl, submitShopList);
 
   return (
     <Drawer
