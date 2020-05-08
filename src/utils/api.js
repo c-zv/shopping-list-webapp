@@ -6,7 +6,7 @@ const api = axios.create({
 });
 
 
-export const apiShopLists = {
+const shopLists = {
   getAll: () => (api.get('/shopping_lists')),
   getOne: (id) => (api.get(`/shopping_lists/${id}`)),
   create: (shopList) => (api.post('/shopping_lists', shopList)),
@@ -14,7 +14,9 @@ export const apiShopLists = {
   delete: (id) => (api.delete(`shopping_lists/${id}`)),
 };
 
-export const apiCategories = {
+const categories = {
   getAll: () => (api.get('/categories')),
+  getOne: (id) => (api.get(`/categories/${id}`)),
 };
 
+export default { shopLists, categories };

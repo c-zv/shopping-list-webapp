@@ -32,3 +32,23 @@ export const withReduxWrapper = (
 ) => (
   <Provider store={store}>{component}</Provider>
 );
+
+export const mocks = {
+  categories: [
+    {
+      id: 1,
+      name: 'Tech',
+      color: '#8da0cb',
+    },
+    {
+      id: 2,
+      name: 'Food',
+      color: '#fc8d62',
+    },
+    {
+      id: 3,
+      name: 'Regular',
+      color: '#66c2a5',
+    },
+  ],
+};
