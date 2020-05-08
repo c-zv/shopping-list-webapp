@@ -6,15 +6,18 @@ import { all } from 'redux-saga/effects';
 
 import { reducerProducts } from './products';
 import { reducerShopLists, sagaShopLists } from './shoppingLists';
+import { reducerShopListCategories, sagaShopListCategories } from './shoppingListCategories';
 
 export const rootReducer = combineReducers({
   products: reducerProducts,
   shoppingLists: reducerShopLists,
+  shoppingListCategories: reducerShopListCategories,
 });
 
 function* rootSaga() {
   yield all([
     sagaShopLists(),
+    sagaShopListCategories(),
   ]);
 }
 

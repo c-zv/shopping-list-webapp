@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { actionsShopLists, selectorsShopLists } from 'state/shoppingLists';
+import { actionsShopListCategories } from 'state/shoppingListCategories';
 import useShopListDrawerHook from './useShopListDrawerHook';
 
 const useShoppingListsHook = () => {
@@ -11,6 +12,7 @@ const useShoppingListsHook = () => {
   useEffect(
     () => {
       dispatch(actionsShopLists.shopListAll.request());
+      dispatch(actionsShopListCategories.categoriesAll.request());
     },
     [dispatch],
   );
