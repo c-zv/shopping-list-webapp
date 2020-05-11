@@ -7,16 +7,7 @@ import { selectorsShopListCategories } from 'state/shoppingListCategories';
 const useShopListDrawerHook = (drawerCtrl, submitShopList) => {
   const [form] = Form.useForm();
 
-  const categoriesAll = useSelector(selectorsShopListCategories.categoriesAll);
-  const categories = categoriesAll ? categoriesAll.data : [];
-
-  const submitForm = useCallback((values) => {
-    const updatedShopList = { ...drawerCtrl.shopListToEdit, ...values };
-    submitShopList(updatedShopList);
-    form.resetFields();
-    drawerCtrl.close();
-  },
-  [submitShopList, drawerCtrl, form]);
+  const categories = useSelector(selectorsShopListCategories.categoriesAllData);
 
   useEffect(
     () => (
@@ -26,6 +17,14 @@ const useShopListDrawerHook = (drawerCtrl, submitShopList) => {
     ),
     [form, drawerCtrl.shopListToEdit],
   );
+
+  const submitForm = useCallback((values) => {
+    const updatedShopList = { ...drawerCtrl.shopListToEdit, ...values };
+    submitShopList(updatedShopList);
+    form.resetFields();
+    drawerCtrl.close();
+  },
+  [submitShopList, drawerCtrl, form]);
 
   let titleText;
   let submitText;

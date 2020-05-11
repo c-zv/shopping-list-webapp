@@ -25,7 +25,7 @@ const reducerShopListsAll = (shoppingListsAll = defaultShopListAll, action) => {
   }
 };
 
-const defaultShopListOne = { data: {}, requesting: false };
+const defaultShopListOne = { data: undefined, requesting: false };
 const reducerShopListOne = (shoppingListsOne = defaultShopListOne, action) => {
   switch (action.type) {
     case types.ONE.REQUEST:

@@ -6,7 +6,8 @@ import { actionsShopListCategories } from 'state/shoppingListCategories';
 import useShopListDrawerHook from './useShopListDrawerHook';
 
 const useShoppingListsHook = () => {
-  const shopLists = useSelector(selectorsShopLists.shopListsAll);
+  const shopLists = useSelector(selectorsShopLists.shopListsAll.data);
+  const shopListsRequesting = useSelector(selectorsShopLists.shopListsAll.requesting);
   const dispatch = useDispatch();
 
   useEffect(
@@ -36,6 +37,7 @@ const useShoppingListsHook = () => {
 
   const shopListsCtrl = {
     shopLists,
+    shopListsRequesting,
     dispatchCreateShopList,
     dispatchEditShopList,
     dispatchDeleteShopList,
