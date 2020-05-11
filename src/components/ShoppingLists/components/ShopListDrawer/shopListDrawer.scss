@@ -3,3 +3,17 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+.selectedCategory {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__color {
+    width: 4rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    height: 1rem;
+  }
+}

@@ -39,7 +39,15 @@ const ShopListDrawer = ({ drawerCtrl, submitShopList }) => {
         >
           <Select placeholder="Category" data-testid="selectedOption">
             {categories.map((cat) => (
-              <Select.Option key={cat.id} value={cat.id}>{cat.name}</Select.Option>
+              <Select.Option key={cat.id} value={cat.id}>
+                <div className={styles.selectedCategory}>
+                  {cat.name}
+                  <div
+                    className={styles.selectedCategory__color}
+                    style={{ backgroundColor: cat.color }}
+                  />
+                </div>
+              </Select.Option>
             ))}
           </Select>
         </Form.Item>
