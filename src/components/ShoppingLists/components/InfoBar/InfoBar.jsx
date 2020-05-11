@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Badge, Dropdown, Menu } from 'antd';
+import {
+  Badge, Dropdown, Menu, Tooltip,
+} from 'antd';
 import { MoreOutlined } from '@ant-design/icons';
 
 import styles from './infoBar.scss';
@@ -14,13 +16,27 @@ const InfoBar = ({
   return (
     <div className={styles.bar}>
       <div className={styles.bar__badges}>
-        <Badge style={{ backgroundColor: styles.bought_color }} showZero count={shoppingList.num_bought_items} title="Number of bought products" />
-        <Badge style={{ backgroundColor: styles.missing_color }} showZero count={shoppingList.num_missing_items} title="Number of missing products" />
+        <Tooltip placement="top" title="Bought products">
+          <Badge
+            style={{ backgroundColor: styles.bought_color }}
+            showZero
+            count={shoppingList.num_bought_items}
+          />
+        </Tooltip>
+        <Tooltip placement="top" title="Missing products">
+          <Badge
+            style={{ backgroundColor: styles.missing_color }}
+            showZero
+            count={shoppingList.num_missing_items}
+          />
+        </Tooltip>
       </div>
-      <div
-        className={styles.bar__color}
-        style={currentCategory && { backgroundColor: currentCategory.color }}
-      />
+      <Tooltip placement="top" title={currentCategory.name}>
+        <div
+          className={styles.bar__color}
+          style={currentCategory && { backgroundColor: currentCategory.color }}
+        />
+      </Tooltip>
       <Dropdown
         className={styles.bar__dropdown}
         trigger={['click']}
