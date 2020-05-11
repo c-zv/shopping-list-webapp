@@ -1,10 +1,16 @@
 import { useSelector } from 'react-redux';
 
 import { selectorsShopListCategories } from 'state/shoppingListCategories';
+import { useMemo } from 'react';
 
 const useInfoBarHook = (shoppingList) => {
+  const getCategoryByIdSelector = useMemo(
+    selectorsShopListCategories.getCategoryByIdCreator,
+    [],
+  );
+
   const currentCategory = useSelector((store) => (
-    selectorsShopListCategories.getCategoryByIdCreator(store, shoppingList.category_id)
+    getCategoryByIdSelector(store, shoppingList.category_id)
   ));
 
   return { currentCategory };

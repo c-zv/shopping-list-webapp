@@ -1,19 +1,19 @@
 import { createSelector } from 'reselect';
 
-const categoriesAll = (state) => state.shoppingListCategories.all;
+const categoriesAllData = (state) => state.shoppingListCategories.all.data;
 
-const getCategoryByIdCreator = createSelector(
+const getCategoryByIdCreator = () => createSelector(
   [
-    categoriesAll,
+    categoriesAllData,
     (_, categoryId) => categoryId,
   ],
   (categories, categoryId) => (
-    categories ? categories.data.find((cat) => cat.id === categoryId) : undefined
+    categories ? categories.find((cat) => cat.id === categoryId) : undefined
   ),
 );
 
 const selectorsShopListCategories = {
-  categoriesAll,
+  categoriesAllData,
   getCategoryByIdCreator,
 };
 
