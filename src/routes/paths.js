@@ -8,6 +8,8 @@ const PATH = {
   },
   SHOPPING_LIST: {
     ALL: '/shopping-lists',
+    VIEW: '/shopping-lists/:shopListId',
+    GO_TO: (shopListId) => `/shopping-lists/${shopListId}`,
   },
   SETTINGS: '/settings',
 };
