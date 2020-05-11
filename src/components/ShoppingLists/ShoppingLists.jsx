@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Button, Row, Col, Card, Spin,
 } from 'antd';
@@ -8,7 +10,7 @@ import useShoppingListsHook from './hooks';
 import { InfoBar, ShopListDrawer } from './components';
 import styles from './shoppingLists.scss';
 
-const ShoppingLists = () => {
+const ShoppingLists = ({ goTo }) => {
   const { shopListsCtrl, shopListDrawerCtrl } = useShoppingListsHook();
   return (
     <>
@@ -27,9 +29,9 @@ const ShoppingLists = () => {
           }
       />
 
-      <Spin size="large" spinning={shopListsCtrl.shopLists.requesting}>
+      <Spin size="large" spinning={shopListsCtrl.shopListsRequesting}>
         <Row justify="start" gutter={[16, 16]} data-testid="shopListCards">
-          {shopListsCtrl.shopLists.data.map((sl) => (
+          {shopListsCtrl.shopLists.map((sl) => (
             <Col justify="center" key={sl.id}>
               <Card
                 size="small"
@@ -46,10 +48,12 @@ const ShoppingLists = () => {
                 )}
                 data-testid="card"
               >
-                <Meta
-                  title={sl.name}
-                  description={sl.description}
-                />
+                <Link to={goTo.SHOPPING_LIST(sl.id)}>
+                  <Meta
+                    title={sl.name}
+                    description={sl.description}
+                  />
+                </Link>
               </Card>
             </Col>
           ))}
@@ -57,6 +61,12 @@ const ShoppingLists = () => {
       </Spin>
     </>
   );
+};
+
+ShoppingLists.propTypes = {
+  goTo: PropTypes.shape({
+    SHOPPING_LIST: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default ShoppingLists;
