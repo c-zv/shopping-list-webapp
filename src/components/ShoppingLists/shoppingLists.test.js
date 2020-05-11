@@ -3,10 +3,14 @@ import '@testing-library/jest-dom';
 import { render, cleanup, waitFor } from '@testing-library/react';
 
 import api from 'utils/api';
-import { testsInitSetup, withReduxWrapper, mocks } from 'utils/testHelpers';
+import { testsInitSetup, withReduxRouterWrapper, initStates, mocks } from 'utils/testHelpers';
 import ShoppingLists from './ShoppingLists';
 
 jest.mock('utils/api');
+
+const mockShopListsGoTo = {
+  SHOPPING_LIST: jest.fn(() => 'link'),
+};
 
 testsInitSetup();
 
@@ -18,12 +22,18 @@ afterEach(cleanup);
 
 describe('ShoppingList Test Suite', () => {
   it('new list button should be defined', () => {
-    const { getByTestId } = render(withReduxWrapper(<ShoppingLists />));
+    const { getByTestId } = render(withReduxRouterWrapper(
+      <ShoppingLists goTo={mockShopListsGoTo} />,
+      { initialState: initStates.withCategories },
+    ));
     expect(getByTestId('newListBtn')).toBeDefined();
   });
 
   it('should not have any shopping list', () => {
-    const { getByTestId, queryAllByTestId } = render(withReduxWrapper(<ShoppingLists />));
+    const { getByTestId, queryAllByTestId } = render(withReduxRouterWrapper(
+      <ShoppingLists goTo={mockShopListsGoTo} />,
+      { initialState: initStates.withCategories },
+    ));
     return waitFor(() => {
       const cards = getByTestId('shopListCards');
       const cardElements = queryAllByTestId('card');
@@ -44,7 +54,10 @@ describe('ShoppingList Test Suite', () => {
     }];
     api.shopLists.getAll.mockResolvedValue({ data: mockedResponse });
 
-    const { getByTestId, queryAllByTestId } = render(withReduxWrapper(<ShoppingLists />));
+    const { getByTestId, queryAllByTestId } = render(withReduxRouterWrapper(
+      <ShoppingLists goTo={mockShopListsGoTo} />,
+      { initialState: initStates.withCategories },
+    ));
     return waitFor(() => {
       const cardElements = queryAllByTestId('card');
       expect(getByTestId('shopListCards')).not.toBeEmpty();

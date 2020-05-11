@@ -33,7 +33,7 @@ describe('useShoppingListsHook tests', () => {
       { wrapper: ({ children }) => withReduxWrapper(children) },
     );
     await waitForNextUpdate();
-    expect(result.current.shopListsCtrl.shopLists.data).toHaveLength(0);
+    expect(result.current.shopListsCtrl.shopLists).toHaveLength(0);
   });
 
   it('should add 1 shopping list', async () => {
@@ -45,15 +45,15 @@ describe('useShoppingListsHook tests', () => {
     );
 
     await waitForNextUpdate();
-    expect(result.current.shopListsCtrl.shopLists.data).toHaveLength(0);
+    expect(result.current.shopListsCtrl.shopLists).toHaveLength(0);
 
     api.shopLists.getAll.mockResolvedValue({ data: mockedResponse2 });
     await act(async () => {
       result.current.shopListsCtrl.dispatchCreateShopList(mockShopList);
       await waitForNextUpdate();
     });
-    expect(result.current.shopListsCtrl.shopLists.data).toHaveLength(mockedResponse2.length);
-    expect(result.current.shopListsCtrl.shopLists.data[0]).toMatchObject(mockShopList);
+    expect(result.current.shopListsCtrl.shopLists).toHaveLength(mockedResponse2.length);
+    expect(result.current.shopListsCtrl.shopLists[0]).toMatchObject(mockShopList);
   });
 
   it('should edit a shopping list', async () => {
@@ -70,8 +70,8 @@ describe('useShoppingListsHook tests', () => {
     );
 
     await waitForNextUpdate();
-    expect(result.current.shopListsCtrl.shopLists.data).toHaveLength(mockedResponse1.length);
-    expect(result.current.shopListsCtrl.shopLists.data[0]).toMatchObject(mockedResponse1[0]);
+    expect(result.current.shopListsCtrl.shopLists).toHaveLength(mockedResponse1.length);
+    expect(result.current.shopListsCtrl.shopLists[0]).toMatchObject(mockedResponse1[0]);
 
     const mockedResponse2 = [{ ...mockShopList, ...propertiesToChange }];
     api.shopLists.getAll.mockResolvedValue({ data: mockedResponse2 });
@@ -82,8 +82,8 @@ describe('useShoppingListsHook tests', () => {
       });
       await waitForNextUpdate();
     });
-    expect(result.current.shopListsCtrl.shopLists.data).toHaveLength(mockedResponse2.length);
-    expect(result.current.shopListsCtrl.shopLists.data[0]).toMatchObject(mockedResponse2[0]);
+    expect(result.current.shopListsCtrl.shopLists).toHaveLength(mockedResponse2.length);
+    expect(result.current.shopListsCtrl.shopLists[0]).toMatchObject(mockedResponse2[0]);
   });
 
   it('should delete a shopping list', async () => {
@@ -96,7 +96,7 @@ describe('useShoppingListsHook tests', () => {
       { wrapper: ({ children }) => withReduxWrapper(children) },
     );
     await waitForNextUpdate();
-    expect(result.current.shopListsCtrl.shopLists.data).toHaveLength(mockedResponse1.length);
+    expect(result.current.shopListsCtrl.shopLists).toHaveLength(mockedResponse1.length);
 
     const mockedResponse2 = [];
     api.shopLists.getAll.mockResolvedValue({ data: mockedResponse2 });
@@ -104,6 +104,6 @@ describe('useShoppingListsHook tests', () => {
       result.current.shopListsCtrl.dispatchDeleteShopList(mockShopList.id);
       await waitForNextUpdate();
     });
-    expect(result.current.shopListsCtrl.shopLists.data).toHaveLength(mockedResponse2.length);
+    expect(result.current.shopListsCtrl.shopLists).toHaveLength(mockedResponse2.length);
   });
 });

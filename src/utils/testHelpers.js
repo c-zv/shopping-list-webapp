@@ -6,6 +6,8 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import { initStore } from 'state';
 
 export const testsInitSetup = () => {
@@ -33,6 +35,29 @@ export const withReduxWrapper = (
   <Provider store={store}>{component}</Provider>
 );
 
+export const withRouterWrapper = (component) => {
+  const history = createMemoryHistory();
+  return (
+    <Router history={history}>
+      {component}
+    </Router>
+  );
+};
+
+export const withReduxRouterWrapper = (
+  component,
+  { initialState, store = initStore(initialState) } = {},
+) => {
+  const history = createMemoryHistory();
+  return (
+    <Provider store={store}>
+      <Router history={history}>
+        {component}
+      </Router>
+    </Provider>
+  );
+};
+
 export const mocks = {
   categories: [
     {
@@ -51,4 +76,14 @@ export const mocks = {
       color: '#66c2a5',
     },
   ],
+};
+
+export const initStates = {
+  withCategories: {
+    shoppingListCategories: {
+      all: {
+        data: mocks.categories,
+      },
+    },
+  },
 };
