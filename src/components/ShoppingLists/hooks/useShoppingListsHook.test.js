@@ -6,6 +6,10 @@ import useShoppingListsHook from './useShoppingListsHook';
 
 jest.mock('utils/api');
 
+// notificationManager should be mocked because the message from antd is causing the warning
+// "It looks like you're  using the wrong act() around your test interactions"
+jest.mock('utils/notificationManager');
+
 const mockShopList = {
   id: 1,
   name: 'aut',
