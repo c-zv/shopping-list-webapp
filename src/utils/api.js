@@ -14,9 +14,15 @@ const shopLists = {
   delete: (id) => (api.delete(`shopping_lists/${id}`)),
 };
 
+const shopListItems = {
+  create: (shopListId, item) => (api.post(`/shopping_lists/${shopListId}/items`, item)),
+  update: (shopListId, itemId, item) => (api.put(`/shopping_lists/${shopListId}/items/${itemId}`, item)),
+  delete: (shopListId, itemId) => (api.delete(`/shopping_lists/${shopListId}/items/${itemId}`)),
+};
+
 const categories = {
   getAll: () => (api.get('/categories')),
   getOne: (id) => (api.get(`/categories/${id}`)),
 };
 
-export default { shopLists, categories };
+export default { shopLists, shopListItems, categories };
