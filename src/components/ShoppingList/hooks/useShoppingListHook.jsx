@@ -1,20 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectorsShopLists, actionsShopLists } from 'state/shoppingLists';
+import { actionsShopListItems } from 'state/shoppingListItems';
 
 const useShoppingListHook = (shopListId) => {
-  const dispatcher = useDispatch();
+  const dispatch = useDispatch();
 
   const shopList = useSelector(selectorsShopLists.shopListsOne.data);
   const shopListRequesting = useSelector(selectorsShopLists.shopListsOne.requesting);
 
   useEffect(() => {
-    dispatcher(actionsShopLists.shopListOne.request(shopListId));
+    dispatch(actionsShopLists.shopListOne.request(shopListId));
   },
-  [dispatcher, shopListId]);
+  [dispatch, shopListId]);
 
-  return { shopList, shopListRequesting };
+  const dispatchUpdateShopListItem = useCallback(
+    (item) => dispatch(actionsShopListItems.shopListItemUpdate.request(shopListId, item.id, item)),
+    [dispatch, shopListId],
+  );
+
+  return { shopList, shopListRequesting, dispatchUpdateShopListItem };
 };
 
 export default useShoppingListHook;

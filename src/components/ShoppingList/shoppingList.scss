@@ -1,0 +1,32 @@
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.categoryBar {
+  width: 4rem;
+  height: 1rem;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+}
+
+.shopList {
+  padding: 0;
+}
+
+.listItem {
+  &__checkbox {
+    margin-right: 1rem;
+  }
+  &__checked {
+    color: green;
+    text-decoration: line-through;
+  }
+  &__unchecked {
+    color: black;
+  }
+}
+
