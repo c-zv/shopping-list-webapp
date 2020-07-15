@@ -37,6 +37,7 @@ function* requestShopListItemDelete(action) {
     const { shopListId, itemId } = action.payload;
     yield call(api.shopListItems.delete, shopListId, itemId);
     yield put(actionsShopListItems.shopListItemDelete.requestSuccess());
+    yield put(actionsShopLists.shopListOne.request(shopListId));
   } catch (error) {
     const notification = new Notification();
     yield put(actionsShopListItems.shopListItemDelete.requestFail());

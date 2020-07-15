@@ -15,12 +15,19 @@ const useShoppingListHook = (shopListId) => {
   },
   [dispatch, shopListId]);
 
-  const dispatchUpdateShopListItem = useCallback(
+  const dispatchUpdateItem = useCallback(
     (item) => dispatch(actionsShopListItems.shopListItemUpdate.request(shopListId, item.id, item)),
     [dispatch, shopListId],
   );
 
-  return { shopList, shopListRequesting, dispatchUpdateShopListItem };
+  const dispatchRemoveItem = useCallback(
+    (item) => dispatch(actionsShopListItems.shopListItemDelete.request(shopListId, item.id)),
+    [dispatch, shopListId],
+  );
+
+  return {
+    shopList, shopListRequesting, dispatchUpdateItem, dispatchRemoveItem,
+  };
 };
 
 export default useShoppingListHook;

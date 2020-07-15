@@ -31,12 +31,14 @@ const InfoBar = ({
           />
         </Tooltip>
       </div>
-      <Tooltip placement="top" title={currentCategory.name}>
-        <div
-          className={styles.bar__color}
-          style={currentCategory && { backgroundColor: currentCategory.color }}
-        />
-      </Tooltip>
+      {currentCategory && (
+        <Tooltip placement="top" title={currentCategory.name}>
+          <div
+            className={styles.bar__color}
+            style={currentCategory && { backgroundColor: currentCategory.color }}
+          />
+        </Tooltip>
+      )}
       <Dropdown
         className={styles.bar__dropdown}
         trigger={['click']}

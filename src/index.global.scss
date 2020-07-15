@@ -1,3 +1,8 @@
 .cont {
   background-color: #bcc5cf;
 }
+
+// remove browser default scroll in ant-design tables:
+.ant-table-content{
+  overflow-x: auto!important;
+}
