@@ -12,7 +12,7 @@
     "testing-library"
   ],
   "rules": {
-
+    "no-unused-vars": [2, {"args": "all", "argsIgnorePattern": "^_"}]
   },
   "overrides": [
     {
