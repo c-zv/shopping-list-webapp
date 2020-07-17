@@ -1,17 +1,12 @@
-import { useSelector } from 'react-redux';
-import { useMemo } from 'react';
-
-import { selectorsProducts } from '~/state/products';
+import api from '~/api';
+import useApiRequestHook from '~/api/useApiRequestHook';
 
 const useProductHook = (productId) => {
-  const getProductByIdSelector = useMemo(
-    selectorsProducts.getProductByIdCreator,
-    [],
-  );
+  const { response, error, loading } = useApiRequestHook(api.products.getOne, [productId]);
 
-  const product = useSelector((state) => getProductByIdSelector(state, productId));
+  const product = response.data || undefined;
 
-  return { product };
+  return { product, error, loading };
 };
 
 export default useProductHook;

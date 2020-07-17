@@ -37,7 +37,7 @@ const useApiRequestHook = (requestFn, argsFn = []) => {
   const [request] = useState(() => requestFn);
   const [requestArgs] = useState(argsFn);
 
-  const [requestState, dispatch] = useReducer(requestReducer, {
+  const [reqState, dispatch] = useReducer(requestReducer, {
     response: {},
     error: undefined,
     loading: false,
@@ -59,7 +59,11 @@ const useApiRequestHook = (requestFn, argsFn = []) => {
     apiRequest();
   }, [apiRequest]);
 
-  return requestState;
+  return {
+    response: reqState.response,
+    error: reqState.error,
+    loading: reqState.loading,
+  };
 };
 
 export default useApiRequestHook;
