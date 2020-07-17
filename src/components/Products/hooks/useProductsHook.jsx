@@ -1,24 +1,13 @@
-import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { actionsProducts, selectorsProducts } from '~/state/products';
-
-const randomProduct = () => ({
-  id: `${Math.round(Math.random() * 100000)}`,
-  name: `name_${Math.round(Math.random() * 1000).toString()}`,
-  imageLink: 'http://placeimg.com/190/200/tech',
-});
+import api from '~/api';
+import useApiRequestHook from '~/api/useApiRequestHook';
 
 const useProductsHook = () => {
-  const products = useSelector(selectorsProducts.getProducts);
-  const dispatch = useDispatch();
+  const { response, error, loading } = useApiRequestHook(api.products.getAll, []);
+  const products = response.data || [];
 
-  const addProduct = useCallback(
-    () => (dispatch(actionsProducts.addProduct(randomProduct()))),
-    [dispatch],
-  );
-
-  return { products, addProduct };
+  return {
+    products, error, loading,
+  };
 };
 
 export default useProductsHook;

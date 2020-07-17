@@ -2,22 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
-  Button, Card, Row, Col,
+  Card, Row, Col, Spin,
 } from 'antd';
 
 import styles from './products.scss';
 import useProductsHook from './hooks';
 
 const Products = ({ goTo }) => {
-  const { products, addProduct } = useProductsHook();
+  const { products, loading } = useProductsHook();
   return (
-    <>
-      <div className={styles.button_container}>
-        <Button type="primary" onClick={addProduct}>
-          Create random product
-        </Button>
-      </div>
-
+    <Spin size="large" spinning={loading}>
       <Row justify="start" gutter={[16, 16]}>
         {products.map((prod) => (
           <Col key={prod.id} justify="center">
@@ -26,15 +20,15 @@ const Products = ({ goTo }) => {
                 className={styles.card}
                 hoverable
                 bordered
-                cover={<img alt="" src={prod.imageLink} className={styles.image} />}
+                cover={<img alt="" src="http://placeimg.com/190/200/tech" className={styles.image} />}
               >
-                {prod.name}
+                {prod.product.name}
               </Card>
             </Link>
           </Col>
         ))}
       </Row>
-    </>
+    </Spin>
   );
 };
 
