@@ -2,11 +2,13 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, cleanup, waitFor } from '@testing-library/react';
 
-import api from 'utils/api';
-import { testsInitSetup, withReduxRouterWrapper, initStates, mocks } from 'utils/testHelpers';
+import api from '~/api';
+import {
+  testsInitSetup, withReduxRouterWrapper, initStates, mocks,
+} from '~/utils/testHelpers';
 import ShoppingLists from './ShoppingLists';
 
-jest.mock('utils/api');
+jest.mock('~/api');
 
 const mockShopListsGoTo = {
   SHOPPING_LIST: jest.fn(() => 'link'),

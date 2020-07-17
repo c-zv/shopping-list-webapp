@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, cleanup } from '@testing-library/react';
-import { testsInitSetup, withReduxWrapper, mocks } from 'utils/testHelpers';
+import { testsInitSetup, withReduxWrapper, mocks } from '~/utils/testHelpers';
 
 import ShopListDrawer from './ShopListDrawer';
 

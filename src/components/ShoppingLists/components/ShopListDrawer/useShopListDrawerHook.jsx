@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
 import { Form } from 'antd';
 
-import { selectorsShopListCategories } from 'state/shoppingListCategories';
+import { selectorsShopListCategories } from '~/state/shoppingListCategories';
 
 const useShopListDrawerHook = (drawerCtrl, submitShopList) => {
   const [form] = Form.useForm();

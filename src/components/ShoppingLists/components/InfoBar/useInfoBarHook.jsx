@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-
-import { selectorsShopListCategories } from 'state/shoppingListCategories';
 import { useMemo } from 'react';
+
+import { selectorsShopListCategories } from '~/state/shoppingListCategories';
 
 const useInfoBarHook = (shoppingList) => {
   const getCategoryByIdSelector = useMemo(

@@ -2,8 +2,8 @@ import {
   takeLatest, call, put, select,
 } from 'redux-saga/effects';
 
-import api from 'utils/api';
-import Notification from 'utils/notificationManager';
+import api from '~/api';
+import Notification from '~/utils/notificationManager';
 import { types, actionsShopListCategories } from './actions';
 import selectorsShopListCategories from './selectors';
 

@@ -25,4 +25,11 @@ const categories = {
   getOne: (id) => (api.get(`/categories/${id}`)),
 };
 
-export default { shopLists, shopListItems, categories };
+const products = {
+  getAll: () => (api.get('store_products')),
+  getOne: (id) => (api.get(`store_products/${id}`)),
+};
+
+export default {
+  shopLists, shopListItems, categories, products,
+};

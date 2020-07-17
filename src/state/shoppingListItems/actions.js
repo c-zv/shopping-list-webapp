@@ -1,4 +1,4 @@
-import { generateActionsForApiRequest } from 'utils/stateHelpers';
+import { generateActionsForApiRequest } from '~/utils/stateHelpers';
 
 export const types = {
   CREATE: generateActionsForApiRequest('API_POST_SHOP_LIST_ITEM'),

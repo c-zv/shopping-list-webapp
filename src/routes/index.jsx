@@ -3,8 +3,8 @@ import {
   Route, Switch,
 } from 'react-router-dom';
 
-import NavigationBar from 'components/NavigationBar';
-import PATH from 'routes/paths';
+import NavigationBar from '~/components/NavigationBar';
+import PATH from '~/routes/paths';
 import HomeRoute from './homeRoute';
 import ProductsRoute from './productsRoute';
 import ShoppingListsRoute from './shoppingListsRoute';

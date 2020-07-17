@@ -3,8 +3,8 @@ import {
   Route, Switch,
 } from 'react-router-dom';
 
-import PATH from 'routes/paths';
-import ShoppingLists from 'components/ShoppingLists';
+import PATH from '~/routes/paths';
+import ShoppingLists from '~/components/ShoppingLists';
 import ShoppingListRoute from './ShoppingListRoute';
 
 const ShoppingListsGoTo = {

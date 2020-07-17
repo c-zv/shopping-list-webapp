@@ -1,14 +1,14 @@
 import { renderHook, act, cleanup } from '@testing-library/react-hooks';
 
-import api from 'utils/api';
-import { withReduxWrapper, mocks } from 'utils/testHelpers';
+import api from '~/api';
+import { withReduxWrapper, mocks } from '~/utils/testHelpers';
 import useShoppingListsHook from './useShoppingListsHook';
 
-jest.mock('utils/api');
+jest.mock('~/api');
 
 // notificationManager should be mocked because the message from antd is causing the warning
 // "It looks like you're  using the wrong act() around your test interactions"
-jest.mock('utils/notificationManager');
+jest.mock('~/utils/notificationManager');
 
 const mockShopList = {
   id: 1,

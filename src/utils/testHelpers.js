@@ -8,7 +8,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { initStore } from 'state';
+import { initStore } from '~/state';
 
 export const testsInitSetup = () => {
   // mock matchMedia used by some components. For more details check:

@@ -32,10 +32,7 @@
       "alias": {
         "map": [
           ["assets", "./src/assets/"],
-          ["components", "./src/components/"],
-          ["routes", "./src/routes/"],
-          ["state", "./src/state/"],
-          ["utils", "./src/utils/"]
+          ["~", "./src/"]
         ],
         "extensions": [".js", ".jsx", ".json"]
       }

@@ -3,8 +3,8 @@ import {
   Route, Switch,
 } from 'react-router-dom';
 
-import PATH from 'routes/paths';
-import Products from 'components/Products';
+import PATH from '~/routes/paths';
+import Products from '~/components/Products';
 import ProductRoute from './ProductRoute';
 
 const productsGoTo = {

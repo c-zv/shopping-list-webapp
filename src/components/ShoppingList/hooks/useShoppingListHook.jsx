@@ -1,8 +1,8 @@
 import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectorsShopLists, actionsShopLists } from 'state/shoppingLists';
-import { actionsShopListItems } from 'state/shoppingListItems';
+import { selectorsShopLists, actionsShopLists } from '~/state/shoppingLists';
+import { actionsShopListItems } from '~/state/shoppingListItems';
 
 const useShoppingListHook = (shopListId) => {
   const dispatch = useDispatch();

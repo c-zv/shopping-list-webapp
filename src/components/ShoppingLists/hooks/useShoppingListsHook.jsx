@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { actionsShopLists, selectorsShopLists } from 'state/shoppingLists';
-import { actionsShopListCategories } from 'state/shoppingListCategories';
+import { actionsShopLists, selectorsShopLists } from '~/state/shoppingLists';
+import { actionsShopListCategories } from '~/state/shoppingListCategories';
 import useShopListDrawerHook from './useShopListDrawerHook';
 
 const useShoppingListsHook = () => {

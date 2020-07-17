@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { actionsProducts, selectorsProducts } from 'state/products';
+import { actionsProducts, selectorsProducts } from '~/state/products';
 
 const randomProduct = () => ({
   id: `${Math.round(Math.random() * 100000)}`,

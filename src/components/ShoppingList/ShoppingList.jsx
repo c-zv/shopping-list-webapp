@@ -6,7 +6,7 @@ import {
 import { DeleteOutlined, CheckOutlined } from '@ant-design/icons';
 import Meta from 'antd/lib/card/Meta';
 
-import UtilsFunc from 'utils/func';
+import UtilsFunc from '~/utils/func';
 import useShoppingListHook from './hooks';
 import styles from './shoppingList.scss';
 

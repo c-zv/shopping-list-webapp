@@ -1,4 +1,4 @@
-import { generateActionsForApiRequest } from 'utils/stateHelpers';
+import { generateActionsForApiRequest } from '~/utils/stateHelpers';
 
 export const types = {
   ALL: generateActionsForApiRequest('API_GET_ALL_SHOP_LIST_CATEGORIES'),

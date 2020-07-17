@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-
-import { selectorsProducts } from 'state/products';
 import { useMemo } from 'react';
+
+import { selectorsProducts } from '~/state/products';
 
 const useProductHook = (productId) => {
   const getProductByIdSelector = useMemo(
