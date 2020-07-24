@@ -1,5 +1,5 @@
 import {
-  useState, useEffect, useCallback, useReducer,
+  useState, useCallback, useReducer,
 } from 'react';
 
 const requestActions = {
@@ -33,9 +33,8 @@ const requestReducer = (state, action) => {
   }
 };
 
-const useApiRequestHook = (requestFn, argsFn = []) => {
+const useApiRequestHook = (requestFn) => {
   const [request] = useState(() => requestFn);
-  const [requestArgs] = useState(argsFn);
 
   const [reqState, dispatch] = useReducer(requestReducer, {
     response: {},
@@ -43,26 +42,23 @@ const useApiRequestHook = (requestFn, argsFn = []) => {
     loading: false,
   });
 
-  const apiRequest = useCallback(
-    async () => {
+  const execute = useCallback(
+    async (args = []) => {
       dispatch({ type: requestActions.FETCH });
       try {
-        const res = await request(...requestArgs);
+        const res = await request(...args);
         dispatch({ type: requestActions.SUCCESS, payload: res.data });
       } catch (err) {
         dispatch({ type: requestActions.ERROR, payload: err });
       }
-    }, [request, requestArgs],
+    }, [request],
   );
-
-  useEffect(() => {
-    apiRequest();
-  }, [apiRequest]);
 
   return {
     response: reqState.response,
     error: reqState.error,
     loading: reqState.loading,
+    execute,
   };
 };
 

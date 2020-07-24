@@ -6,13 +6,23 @@ import api from '~/api';
 import useApiRequestHook from '~/api/useApiRequestHook';
 
 const useProductsHook = () => {
-  const { response, error, loading } = useApiRequestHook(api.products.getAll, []);
+  const {
+    response, error, loading, execute: getAllProducts,
+  } = useApiRequestHook(api.products.getAll);
   const products = useMemo(() => response.data || [], [response]);
+  useEffect(
+    () => { getAllProducts([]); },
+    [getAllProducts],
+  );
 
   const {
-    response: shopListsResp,
-  } = useApiRequestHook(api.shopLists.getAll, []);
+    response: shopListsResp, execute: getShopLists,
+  } = useApiRequestHook(api.shopLists.getAll);
   const myShopLists = useMemo(() => shopListsResp.data || [], [shopListsResp]);
+  useEffect(
+    () => { getShopLists([]); },
+    [getShopLists],
+  );
 
   const [quantity, setQuantity] = useState(1);
   const [selectedShopList, setSelectedShopList] = useState(undefined);
