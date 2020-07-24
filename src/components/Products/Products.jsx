@@ -14,7 +14,7 @@ const Products = ({ goTo }) => {
     products,
     loading,
     showProductModal,
-    modalLoading,
+    addingItem,
     openModal,
     handleAddToShopList,
     myShopLists,
@@ -36,14 +36,14 @@ const Products = ({ goTo }) => {
           >
             <div className={styles.cardContent}>
               <div className={styles.imageContainer}>
-                <img alt="" src="http://placeimg.com/220/260/tech" className={styles.imageContainer__image} />
+                <img alt="" src={`http://placeimg.com/220/260/tech?t=${prod.id}`} className={styles.imageContainer__image} />
                 <div className={styles.imageContainer__overlay}>
                   {!showProductModal[index] && (
                     <Button
                       type="link"
                       shape="round"
                       className={styles.imageContainer__overlay__button}
-                      disabled={modalLoading}
+                      disabled={addingItem}
                       onClick={() => openModal(index)}
                     >
                       Add to shopping list
@@ -57,7 +57,7 @@ const Products = ({ goTo }) => {
                         placeholder="Shopping list"
                         value={selectedShopList}
                         allowClear
-                        disabled={modalLoading}
+                        disabled={addingItem}
                       >
                         {myShopLists.map((shopList) => (
                           <Select.Option value={shopList.id} key={shopList.id}>
@@ -78,13 +78,13 @@ const Products = ({ goTo }) => {
                         parser={(value) => value.replace('x ', '')}
                         className={styles.selectList__quantity}
                         onChange={(value) => setQuantity(value)}
-                        disabled={modalLoading}
+                        disabled={addingItem}
                       />
                       <div className={styles.selectList__buttons}>
                         <Button
                           type="primary"
                           onClick={() => handleAddToShopList(true, index)}
-                          loading={modalLoading}
+                          loading={addingItem}
                           disabled={!selectedShopList}
                         >
                           Add
@@ -92,7 +92,7 @@ const Products = ({ goTo }) => {
                         <Button
                           type="danger"
                           onClick={() => handleAddToShopList(false, index)}
-                          disabled={modalLoading}
+                          disabled={addingItem}
                         >
                           Cancel
                         </Button>
@@ -114,7 +114,7 @@ const Products = ({ goTo }) => {
                   <span className={styles.cardInfo__sellerName}>
                     { `Store ${prod.store_id}` }
                   </span>
-                  <div className={styles.stockIndicator} />
+                  <span className={styles.stockIndicator} />
                 </div>
               </Link>
             </div>

@@ -24,11 +24,14 @@ const useProductsHook = () => {
     [getShopLists],
   );
 
+  const {
+    loading: addingItem, execute: addItem,
+  } = useApiRequestHook(api.shopLists.addItem);
+
   const [quantity, setQuantity] = useState(1);
   const [selectedShopList, setSelectedShopList] = useState(undefined);
   const [lastUsedShopList, setLastUsedShopList] = useState(undefined);
   const [showProductModal, setShowProductModal] = useState([]);
-  const [modalLoading, setModalLoading] = useState(false);
 
   useEffect(() => {
     setShowProductModal(Array(products.length).fill(false));
@@ -50,20 +53,16 @@ const useProductsHook = () => {
   );
 
   const handleAddToShopList = useCallback(
-    (submit, index) => {
+    async (submit, index) => {
       if (submit) {
-        console.log(`-> Submit! list: ${selectedShopList}, qty: ${quantity}, productName: ${products[index].product.name}`);
-        setModalLoading(true);
-        setTimeout(() => {
-          setModalLoading(false);
-          setShowModal(index, false);
-          setQuantity(1);
-          setLastUsedShopList(selectedShopList);
-        }, 1000);
+        await addItem([selectedShopList, products[index].id, quantity]);
+        setShowModal(index, false);
+        setQuantity(1);
+        setLastUsedShopList(selectedShopList);
       } else {
         setShowModal(index, false);
       }
-    }, [setShowModal, selectedShopList, quantity, setQuantity, products],
+    }, [addItem, setShowModal, selectedShopList, quantity, setQuantity, products],
   );
 
   return {
@@ -71,7 +70,7 @@ const useProductsHook = () => {
     error,
     loading,
     showProductModal,
-    modalLoading,
+    addingItem,
     openModal,
     handleAddToShopList,
     myShopLists,

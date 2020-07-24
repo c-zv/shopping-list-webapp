@@ -12,6 +12,9 @@ const shopLists = {
   create: (shopList) => (api.post('/shopping_lists', shopList)),
   update: (id, shopList) => (api.put(`/shopping_lists/${id}`, shopList)),
   delete: (id) => (api.delete(`shopping_lists/${id}`)),
+  addItem: (shopListId, storeProductId, quantity) => (
+    api.put(`shopping_lists/${shopListId}/add_item`, { store_product_id: storeProductId, qty_to_buy: quantity })
+  ),
 };
 
 const shopListItems = {
