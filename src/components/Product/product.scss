@@ -1,0 +1,111 @@
+@import '~/global-vars.scss';
+
+.productWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 1rem;
+
+  @media (min-width: $screen-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $screen-lg) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.imageContainer {
+  justify-self: center;
+  &__image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.infoWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "title"
+    "description"
+    "storeInfo";
+  justify-items: flex-start;
+  &__title {
+    grid-area: title;
+    justify-self: center;
+  }
+  &__description {
+    grid-area: description;
+    background-color: #f0f2f5;
+    padding: 0.5rem;
+  }
+  &__storeInfo {
+    grid-area: storeInfo;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: $screen-lg) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 6fr;
+    grid-template-areas:
+    "title title"
+    "description storeInfo";
+  }
+}
+
+.addToList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.5rem 0;
+  &__priceStockBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0;
+  }
+  &__price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: brown;
+  }
+}
+
+.popoverContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  &__seller {
+    padding: 0 0 0 0.2rem;
+    border: 0;
+  }
+}
+
+.stockIndicator {
+  margin-left: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: green;
+  border-radius: 1rem;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  &__prodName {
+    font-weight: bold;
+  }
+  &__quantity {
+    margin: 0.4rem 0;
+    max-width: 4.5rem;
+  }
+  &__shopList {
+    min-width: 14rem;
+  }
+}
