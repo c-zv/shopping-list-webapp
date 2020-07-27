@@ -64,9 +64,6 @@ const Products = ({ goTo }) => {
                             {shopList.name}
                           </Select.Option>
                         ))}
-                        <Select.Option value={33} key={4874}>
-                          Random super large name
-                        </Select.Option>
                       </Select>
                       <InputNumber
                         bordered={false}

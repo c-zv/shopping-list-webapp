@@ -3,7 +3,7 @@ import {
 } from 'react';
 
 import api from '~/api';
-import useApiRequestHook from '~/api/useApiRequestHook';
+import { useApiRequestHook, useAddShopListItemHook } from '~/hooks';
 
 const useProductsHook = () => {
   const {
@@ -16,20 +16,14 @@ const useProductsHook = () => {
   );
 
   const {
-    response: shopListsResp, execute: getShopLists,
-  } = useApiRequestHook(api.shopLists.getAll);
-  const myShopLists = useMemo(() => shopListsResp.data || [], [shopListsResp]);
-  useEffect(
-    () => { getShopLists([]); },
-    [getShopLists],
-  );
+    myShopLists,
+    addingItem,
+    setQuantity,
+    selectedShopList,
+    setSelectedShopList,
+    addShopListItem,
+  } = useAddShopListItemHook();
 
-  const {
-    loading: addingItem, execute: addItem,
-  } = useApiRequestHook(api.shopLists.addItem);
-
-  const [quantity, setQuantity] = useState(1);
-  const [selectedShopList, setSelectedShopList] = useState(undefined);
   const [lastUsedShopList, setLastUsedShopList] = useState(undefined);
   const [showProductModal, setShowProductModal] = useState([]);
 
@@ -49,20 +43,19 @@ const useProductsHook = () => {
     (index) => {
       setShowModal(index, true);
       setSelectedShopList(lastUsedShopList);
-    }, [setShowModal, lastUsedShopList],
+    }, [setShowModal, lastUsedShopList, setSelectedShopList],
   );
 
   const handleAddToShopList = useCallback(
     async (submit, index) => {
       if (submit) {
-        await addItem([selectedShopList, products[index].id, quantity]);
+        await addShopListItem(products[index].id);
         setShowModal(index, false);
-        setQuantity(1);
         setLastUsedShopList(selectedShopList);
       } else {
         setShowModal(index, false);
       }
-    }, [addItem, setShowModal, selectedShopList, quantity, setQuantity, products],
+    }, [addShopListItem, setShowModal, selectedShopList, products],
   );
 
   return {
