@@ -8,16 +8,14 @@ import PATH from '~/routes/paths';
 import HomeRoute from './homeRoute';
 import ProductsRoute from './productsRoute';
 import ShoppingListsRoute from './shoppingListsRoute';
-import SettingsRoute from './settingsRoute';
 
-const navBarGoTo = {
+const navBarPathTo = {
   HOME: () => PATH.HOME,
   PRODUCTS: () => PATH.PRODUCT.ALL,
   SHOPPING_LISTS: () => PATH.SHOPPING_LIST.ALL,
-  SETTINGS: () => PATH.SETTINGS,
 };
 
-const startingRouter = (
+const routes = (
   <Switch>
     <Route exact path={PATH.HOME}>
       <HomeRoute />
@@ -28,14 +26,11 @@ const startingRouter = (
     <Route path={PATH.SHOPPING_LIST.ALL}>
       <ShoppingListsRoute />
     </Route>
-    <Route path={PATH.SETTINGS}>
-      <SettingsRoute />
-    </Route>
   </Switch>
 );
 
 const StartingRoute = () => (
-  <NavigationBar goTo={navBarGoTo} router={startingRouter} />
+  <NavigationBar pathTo={navBarPathTo} routes={routes} />
 );
 
 export default StartingRoute;

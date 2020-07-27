@@ -10,7 +10,7 @@ import ShoppingLists from './ShoppingLists';
 
 jest.mock('~/api');
 
-const mockShopListsGoTo = {
+const mockShopListsPathTo = {
   SHOPPING_LIST: jest.fn(() => 'link'),
 };
 
@@ -25,7 +25,7 @@ afterEach(cleanup);
 describe('ShoppingList Test Suite', () => {
   it('new list button should be defined', () => {
     const { getByTestId } = render(withReduxRouterWrapper(
-      <ShoppingLists goTo={mockShopListsGoTo} />,
+      <ShoppingLists pathTo={mockShopListsPathTo} />,
       { initialState: initStates.withCategories },
     ));
     expect(getByTestId('newListBtn')).toBeDefined();
@@ -33,7 +33,7 @@ describe('ShoppingList Test Suite', () => {
 
   it('should not have any shopping list', () => {
     const { getByTestId, queryAllByTestId } = render(withReduxRouterWrapper(
-      <ShoppingLists goTo={mockShopListsGoTo} />,
+      <ShoppingLists pathTo={mockShopListsPathTo} />,
       { initialState: initStates.withCategories },
     ));
     return waitFor(() => {
@@ -57,7 +57,7 @@ describe('ShoppingList Test Suite', () => {
     api.shopLists.getAll.mockResolvedValue({ data: mockedResponse });
 
     const { getByTestId, queryAllByTestId } = render(withReduxRouterWrapper(
-      <ShoppingLists goTo={mockShopListsGoTo} />,
+      <ShoppingLists pathTo={mockShopListsPathTo} />,
       { initialState: initStates.withCategories },
     ));
     return waitFor(() => {

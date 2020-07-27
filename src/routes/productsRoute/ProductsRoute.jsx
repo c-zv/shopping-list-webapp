@@ -7,14 +7,14 @@ import PATH from '~/routes/paths';
 import Products from '~/components/Products';
 import ProductRoute from './ProductRoute';
 
-const productsGoTo = {
+const productsPathTo = {
   PRODUCT: (id) => PATH.PRODUCT.GO_TO(id),
 };
 
 const ProductsRoute = () => (
   <Switch>
     <Route exact path={PATH.PRODUCT.ALL}>
-      <Products goTo={productsGoTo} />
+      <Products pathTo={productsPathTo} />
     </Route>
     <Route path={PATH.PRODUCT.VIEW}>
       <ProductRoute />

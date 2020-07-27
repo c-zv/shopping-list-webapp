@@ -10,7 +10,7 @@ import useShoppingListsHook from './hooks';
 import { InfoBar, ShopListDrawer } from './components';
 import styles from './shoppingLists.scss';
 
-const ShoppingLists = ({ goTo }) => {
+const ShoppingLists = ({ pathTo }) => {
   const { shopListsCtrl, shopListDrawerCtrl } = useShoppingListsHook();
   return (
     <>
@@ -48,7 +48,7 @@ const ShoppingLists = ({ goTo }) => {
                 )}
                 data-testid="card"
               >
-                <Link to={goTo.SHOPPING_LIST(sl.id)}>
+                <Link to={pathTo.SHOPPING_LIST(sl.id)}>
                   <Meta
                     title={sl.name}
                     description={sl.description}
@@ -64,7 +64,7 @@ const ShoppingLists = ({ goTo }) => {
 };
 
 ShoppingLists.propTypes = {
-  goTo: PropTypes.shape({
+  pathTo: PropTypes.shape({
     SHOPPING_LIST: PropTypes.func.isRequired,
   }).isRequired,
 };

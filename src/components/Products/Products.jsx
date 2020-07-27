@@ -9,7 +9,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import styles from './products.scss';
 import useProductsHook from './hooks';
 
-const Products = ({ goTo }) => {
+const Products = ({ pathTo }) => {
   const {
     products,
     loading,
@@ -100,7 +100,7 @@ const Products = ({ goTo }) => {
                 </div>
 
               </div>
-              <Link to={goTo.PRODUCT(prod.id)} className={styles.cardInfo}>
+              <Link to={pathTo.PRODUCT(prod.id)} className={styles.cardInfo}>
                 <span className={styles.cardInfo__name}>
                   {prod.product.name}
                 </span>
@@ -123,7 +123,7 @@ const Products = ({ goTo }) => {
 };
 
 Products.propTypes = {
-  goTo: PropTypes.shape({
+  pathTo: PropTypes.shape({
     PRODUCT: PropTypes.func.isRequired,
   }).isRequired,
 };

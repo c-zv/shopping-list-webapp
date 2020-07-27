@@ -14,6 +14,8 @@ function* requestCategoriesAll() {
     if (categoriesAll.length === 0) {
       const result = yield call(api.categories.getAll);
       yield put(actionsShopListCategories.categoriesAll.requestSuccess(result.data));
+    } else {
+      yield put(actionsShopListCategories.categoriesAll.requestSuccess(categoriesAll));
     }
   } catch (error) {
     yield put(actionsShopListCategories.categoriesAll.requestFail());
