@@ -21,6 +21,7 @@ const Products = ({ pathTo }) => {
     selectedShopList,
     setSelectedShopList,
     setQuantity,
+    showStoreName,
   } = useProductsHook();
 
   return (
@@ -109,7 +110,7 @@ const Products = ({ pathTo }) => {
                 </span>
                 <div className={styles.cardInfo__seller}>
                   <span className={styles.cardInfo__sellerName}>
-                    { `Store ${prod.store_id}` }
+                    { showStoreName(prod.store_id) }
                   </span>
                   <span className={styles.stockIndicator} />
                 </div>

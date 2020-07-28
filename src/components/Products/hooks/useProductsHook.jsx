@@ -1,11 +1,21 @@
 import {
   useState, useEffect, useMemo, useCallback,
 } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import api from '~/api';
 import { useApiRequestHook, useAddShopListItemHook } from '~/hooks';
+import { actionsStores, selectorsStores } from '~/state/stores';
 
 const useProductsHook = () => {
+  const dispatch = useDispatch();
+  useEffect(
+    () => { dispatch(actionsStores.storesAll.request()); },
+    [dispatch],
+  );
+
+  const stores = useSelector(selectorsStores.storesAllData);
+
   const {
     response, error, loading, execute: getAllProducts,
   } = useApiRequestHook(api.products.getAll);
@@ -58,6 +68,14 @@ const useProductsHook = () => {
     }, [addShopListItem, setShowModal, selectedShopList, products],
   );
 
+  const showStoreName = useCallback(
+    (storeId) => {
+      const store = stores.find((s) => s.id === storeId);
+      return store ? store.name : '';
+    },
+    [stores],
+  );
+
   return {
     products,
     error,
@@ -70,6 +88,7 @@ const useProductsHook = () => {
     selectedShopList,
     setSelectedShopList,
     setQuantity,
+    showStoreName,
   };
 };
 
