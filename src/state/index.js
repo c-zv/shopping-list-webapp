@@ -7,11 +7,13 @@ import { all } from 'redux-saga/effects';
 import { reducerShopLists, sagaShopLists } from './shoppingLists';
 import { reducerShopListCategories, sagaShopListCategories } from './shoppingListCategories';
 import { reducerShopListItems, sagaShopListItems } from './shoppingListItems';
+import { reducerStores, sagaStores } from './stores';
 
 export const rootReducer = combineReducers({
   shoppingLists: reducerShopLists,
   shoppingListCategories: reducerShopListCategories,
   shoppingListItems: reducerShopListItems,
+  stores: reducerStores,
 });
 
 function* rootSaga() {
@@ -19,6 +21,7 @@ function* rootSaga() {
     sagaShopLists(),
     sagaShopListCategories(),
     sagaShopListItems(),
+    sagaStores(),
   ]);
 }
 

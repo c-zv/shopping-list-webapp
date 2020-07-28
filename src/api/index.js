@@ -29,10 +29,14 @@ const categories = {
 };
 
 const products = {
-  getAll: () => (api.get('store_products')),
-  getOne: (id) => (api.get(`store_products/${id}`)),
+  getAll: () => (api.get('/store_products')),
+  getOne: (id) => (api.get(`/store_products/${id}`)),
+};
+
+const stores = {
+  getAll: () => (api.get('/stores')),
 };
 
 export default {
-  shopLists, shopListItems, categories, products,
+  shopLists, shopListItems, categories, products, stores,
 };
