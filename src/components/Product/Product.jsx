@@ -21,14 +21,8 @@ const Product = ({ productId }) => {
     setQuantity,
     handleAddToShopList,
     addingItem,
+    store,
   } = useProductHook(productId);
-
-  const store = {
-    name: 'Mueller-Stiedemann',
-    city: 'Boydview',
-    country: 'Guadeloupe',
-    adress: '59594 Gerlach Spur',
-  };
 
   return (
     <Spin size="large" spinning={loading}>
@@ -75,7 +69,7 @@ const Product = ({ productId }) => {
                         trigger="click"
                         content={(
                           <>
-                            <div>{store.adress}</div>
+                            <div>{store.address}</div>
                             <div>{`${store.city}, ${store.country}`}</div>
                           </>
                         )}

@@ -1,7 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import {
+  useState, useEffect, useCallback, useMemo,
+} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import api from '~/api';
 import { useApiRequestHook, useAddShopListItemHook } from '~/hooks';
+import { actionsStores, selectorsStores } from '~/state/stores';
 
 const useProductHook = (productId) => {
   const {
@@ -35,6 +39,21 @@ const useProductHook = (productId) => {
     }, [addShopListItem, storeProduct, setShowModal],
   );
 
+  const dispatch = useDispatch();
+  useEffect(
+    () => { dispatch(actionsStores.storesAll.request()); },
+    [dispatch],
+  );
+
+  const getStoreByIdSelector = useMemo(
+    selectorsStores.getStoreByIdFn,
+    [],
+  );
+
+  const store = useSelector((state) => (
+    getStoreByIdSelector(state, storeProduct ? storeProduct.store_id : undefined)
+  )) || {};
+
   return {
     storeProduct,
     error,
@@ -47,6 +66,7 @@ const useProductHook = (productId) => {
     setQuantity,
     handleAddToShopList,
     addingItem,
+    store,
   };
 };
 
