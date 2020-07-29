@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
-import logo from 'assets/logo.png';
+import logo from '~/assets/logo.png';
 import styles from './navigationBar.scss';
 
 const { Header, Content, Footer } = Layout;
@@ -22,7 +22,7 @@ const NavigationBar = ({ pathTo, routes }) => {
   };
 
   return (
-    <Layout>
+    <Layout className={styles.layout}>
       <Header>
         <button type="button" className={styles.logo} onClick={handleHomeClick}>
           <img src={logo} className={styles.logo__img} alt="rr" />
@@ -45,7 +45,7 @@ const NavigationBar = ({ pathTo, routes }) => {
       <Footer style={{ textAlign: 'center' }}>
         <span>
           Shopping-list web application by
-          <a href="https://github.com/c-zv"> c-zv</a>
+          <a href="https://github.com/c-zv"> Constantin Zavgorodnii</a>
         </span>
       </Footer>
     </Layout>

@@ -35,7 +35,7 @@ const Product = ({ productId }) => {
             description={(
               <div className={styles.productWrapper}>
                 <div className={styles.imageContainer}>
-                  <img className={styles.imageContainer__image} alt="" src="http://placeimg.com/400/380/tech?t=1" />
+                  <img className={styles.imageContainer__image} alt="" src="https://placeimg.com/400/380/tech?t=1" />
                 </div>
                 <div className={styles.infoWrapper}>
                   <div className={`${styles.infoWrapper__title} ant-card-meta-title`}>

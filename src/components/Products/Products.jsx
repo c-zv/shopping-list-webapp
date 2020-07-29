@@ -37,7 +37,7 @@ const Products = ({ pathTo }) => {
           >
             <div className={styles.cardContent}>
               <div className={styles.imageContainer}>
-                <img alt="" src={`http://placeimg.com/220/260/tech?t=${prod.id}`} className={styles.imageContainer__image} />
+                <img alt="" src={`https://placeimg.com/220/260/tech?t=${prod.id}`} className={styles.imageContainer__image} />
                 <div className={styles.imageContainer__overlay}>
                   {!showProductModal[index] && (
                     <Button
