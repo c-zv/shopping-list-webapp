@@ -1,6 +1,7 @@
 const path = require('path');
 const commonWebpack = require('./webpack.common');
 const merge = require('webpack-merge');
+const Dotenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -13,7 +14,7 @@ module.exports = merge(commonWebpack, {
   devtool: 'source-map',
   output: {
     filename: '[name]-[contentHash]-bundle.js',
-    publicPath: '.',
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist')
   },
   optimization: {
@@ -45,6 +46,9 @@ module.exports = merge(commonWebpack, {
     }
   },
   plugins: [
+    new Dotenv({
+      path: './.env.production'
+    }),
     new MiniCssExtractPlugin({ filename: '[name]-[contentHash].css' }),
     new CleanWebpackPlugin()
   ],

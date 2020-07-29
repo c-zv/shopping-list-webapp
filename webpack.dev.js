@@ -1,5 +1,6 @@
 const path = require('path');
 const merge = require("webpack-merge");
+const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const commonWebpack = require('./webpack.common');
 
@@ -22,6 +23,9 @@ module.exports = merge(commonWebpack, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new Dotenv({
+      path: './.env.development'
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
