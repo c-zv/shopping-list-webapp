@@ -105,3 +105,7 @@ dist
 
 # Webpack bundle analysis report
 bundle_analysis.json
+
+# environment variables
+.env.development
+.env.production
