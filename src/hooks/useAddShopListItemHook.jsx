@@ -17,7 +17,7 @@ const useAddShopListItemHook = () => {
 
   const {
     loading: addingItem, execute: addItem,
-  } = useApiRequestHook(api.shopLists.addItem);
+  } = useApiRequestHook(api.shopLists.addItem, 'Item was successfully added to shopping list');
 
   const [quantity, setQuantity] = useState(1);
   const [selectedShopList, setSelectedShopList] = useState(undefined);

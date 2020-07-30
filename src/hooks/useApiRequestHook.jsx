@@ -1,6 +1,7 @@
 import {
   useState, useCallback, useReducer,
 } from 'react';
+import Notification from '~/utils/notificationManager';
 
 const requestActions = {
   FETCH: 'REQUEST_INIT',
@@ -33,8 +34,10 @@ const requestReducer = (state, action) => {
   }
 };
 
-const useApiRequestHook = (requestFn) => {
+const useApiRequestHook = (requestFn, successText = undefined) => {
   const [request] = useState(() => requestFn);
+  const [successNotification] = useState(successText);
+  const [notification] = useState(new Notification());
 
   const [reqState, dispatch] = useReducer(requestReducer, {
     response: {},
@@ -48,10 +51,14 @@ const useApiRequestHook = (requestFn) => {
       try {
         const res = await request(...args);
         dispatch({ type: requestActions.SUCCESS, payload: res.data });
+        if (successNotification) {
+          notification.success(successNotification);
+        }
       } catch (err) {
         dispatch({ type: requestActions.ERROR, payload: err });
+        notification.error(err.response.data.error);
       }
-    }, [request],
+    }, [request, notification, successNotification],
   );
 
   return {
