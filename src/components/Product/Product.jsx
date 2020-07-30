@@ -25,7 +25,12 @@ const Product = ({ productId }) => {
   } = useProductHook(productId);
 
   return (
-    <Spin size="large" spinning={loading} className="global-spinner">
+    <Spin
+      size="large"
+      spinning={loading}
+      className="global-spinner"
+      tip="Loading... API might be sleeping on heroku, so this can take several seconds"
+    >
       {storeProduct ? (
         <Card
           size="big"

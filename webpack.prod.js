@@ -90,7 +90,7 @@ module.exports = merge(commonWebpack, {
           {loader: MiniCssExtractPlugin.loader},
           {loader: 'css-loader',
             options: {
-              sourceMap: true
+              sourceMap: false
             }
           },
           {

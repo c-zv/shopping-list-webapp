@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.prod.js",
     "build-analyze": "webpack --config webpack.prod.js --profile --json > bundle_analysis.json",
     "test": "jest --config ./jest.config.json",
-    "test-watch": "npm run test -- --watch"
+    "test-watch": "npm run test -- --watch",
+    "deploy": "heroku container:push web && heroku container:release web"
   },
   "repository": {
     "type": "git",

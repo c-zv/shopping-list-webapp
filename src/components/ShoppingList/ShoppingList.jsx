@@ -93,7 +93,12 @@ const ShoppingList = ({ shopListId }) => {
   ];
 
   return (
-    <Spin size="large" spinning={shopListRequesting} className="global-spinner">
+    <Spin
+      size="large"
+      spinning={shopListRequesting}
+      className="global-spinner"
+      tip="Loading... API might be sleeping on heroku, so this can take several seconds"
+    >
       { shopList ? (
         <Card
           size="big"

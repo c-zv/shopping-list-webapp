@@ -25,7 +25,12 @@ const Products = ({ pathTo }) => {
   } = useProductsHook();
 
   return (
-    <Spin size="large" spinning={loading} className="global-spinner">
+    <Spin
+      size="large"
+      spinning={loading}
+      className="global-spinner"
+      tip="Loading... API might be sleeping on heroku, so this can take several seconds"
+    >
       <div className={styles.productsWrapper}>
         {products.map((prod, index) => (
           <Card
