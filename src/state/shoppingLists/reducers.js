@@ -7,7 +7,7 @@ const reducerShopListsAll = (shoppingListsAll = defaultShopListAll, action) => {
   switch (action.type) {
     case types.ALL.REQUEST:
       return {
-        ...shoppingListsAll,
+        data: [],
         requesting: true,
       };
     case types.ALL.REQUEST_SUCCESS:

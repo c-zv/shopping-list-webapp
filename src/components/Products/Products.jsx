@@ -25,7 +25,7 @@ const Products = ({ pathTo }) => {
   } = useProductsHook();
 
   return (
-    <Spin size="large" spinning={loading}>
+    <Spin size="large" spinning={loading} className="global-spinner">
       <div className={styles.productsWrapper}>
         {products.map((prod, index) => (
           <Card

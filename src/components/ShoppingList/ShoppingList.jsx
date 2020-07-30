@@ -93,8 +93,8 @@ const ShoppingList = ({ shopListId }) => {
   ];
 
   return (
-    <Spin size="large" spinning={shopListRequesting}>
-      { shopList && (
+    <Spin size="large" spinning={shopListRequesting} className="global-spinner">
+      { shopList ? (
         <Card
           size="big"
           bordered={false}
@@ -127,6 +127,8 @@ const ShoppingList = ({ shopListId }) => {
             )}
           />
         </Card>
+      ) : (
+        <p>Shopping list not found</p>
       )}
     </Spin>
   );

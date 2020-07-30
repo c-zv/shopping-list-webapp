@@ -29,7 +29,7 @@ const ShoppingLists = ({ pathTo }) => {
           }
       />
 
-      <Spin size="large" spinning={shopListsCtrl.shopListsRequesting}>
+      <Spin size="large" spinning={shopListsCtrl.shopListsRequesting} className="global-spinner">
         <Row justify="start" gutter={[16, 16]} data-testid="shopListCards">
           {shopListsCtrl.shopLists.map((sl) => (
             <Col justify="center" key={sl.id}>

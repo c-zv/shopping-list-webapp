@@ -25,7 +25,7 @@ const Product = ({ productId }) => {
   } = useProductHook(productId);
 
   return (
-    <Spin size="large" spinning={loading}>
+    <Spin size="large" spinning={loading} className="global-spinner">
       {storeProduct ? (
         <Card
           size="big"
@@ -89,6 +89,7 @@ const Product = ({ productId }) => {
                   onOk={() => handleAddToShopList(true)}
                   onCancel={() => handleAddToShopList(false)}
                   okText="Confirm"
+                  okButtonProps={{ disabled: !selectedShopList }}
                   destroyOnClose
                 >
                   <div className={styles.modalContent}>

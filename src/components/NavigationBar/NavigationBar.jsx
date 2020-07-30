@@ -25,7 +25,7 @@ const NavigationBar = ({ pathTo, routes }) => {
     <Layout className={styles.layout}>
       <Header>
         <button type="button" className={styles.logo} onClick={handleHomeClick}>
-          <img src={logo} className={styles.logo__img} alt="rr" />
+          <img src={logo} className={styles.logo__img} alt="logo" />
         </button>
 
         <Menu theme="dark" mode="horizontal" selectedKeys={[activeKey]} onClick={(e) => handleMenuClick(e.key)}>
