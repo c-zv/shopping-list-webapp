@@ -10,6 +10,8 @@ This project was created for learning purposes where I can explore new tecnologi
 - add/remove products to/from a list;
 - view products from different stores;
 
+The API used for this project can be found in [this](https://github.com/c-zv/shopping-list-api) repository.
+
 ## Tecnologies used
 - JavaScript (ES6)
 - Webpack
