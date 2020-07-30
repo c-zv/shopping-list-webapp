@@ -1,4 +1,8 @@
 # Shopping list web application
+## Live version
+It may be sleeping on heroku and as a result take several seconds to load:
+
+https://c-zv-shop-list-webapp.herokuapp.com/
 ## Introduction
 This project was created for learning purposes where I can explore new tecnologies/libraries and try new ideas. The idea of the application is to allow the user to manage its shopping lists providing the following features:
 - have different lists for different categories (technology, food, etc.);
@@ -42,6 +46,7 @@ VSCode configs are defined in **jsconfig.json**.
 ## Project structure
 ### Root folder (**/**)
 - **dist** folder - created when project is built
+- **nginx** folder - contains nginx configuration for production build
 - **src** folder - all the source code
 Also includes all configuration files for Webpack, Babel, ESLint and VSCode.
 
@@ -50,8 +55,10 @@ Also includes all configuration files for Webpack, Babel, ESLint and VSCode.
 - **index.html** file - template with main react html element. 
 - **index.global.scss** file - global SASS styles (webpack recognizes all files that ends with **.global.scss** as global styles).
 - **ant-design-theming.js** file - file used by webpack to overide the default ant-design theme variables.
+- **api** folder - contains all api requests.
 - **assets** folder - logos, images, etc.
 - **components** folder - contains react components.
+- **hooks** folder - contains global react hooks.
 - **routes** folder - defines and handles the routing logic. Is organized by pages/views in the application.
 - **state** folder - defines state related logic (actions, reducers, sagas, etc.). Is organized by resource type (ex: products, shopping lists, etc.).
 - **utils** folder - contains shared helpers.
