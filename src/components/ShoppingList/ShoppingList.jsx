@@ -97,7 +97,7 @@ const ShoppingList = ({ shopListId }) => {
       size="large"
       spinning={shopListRequesting}
       className="global-spinner"
-      tip="Loading... API might be sleeping on heroku, so this can take several seconds"
+      tip="Loading... API may be sleeping on heroku, so this can take several seconds"
     >
       { shopList ? (
         <Card

@@ -29,7 +29,7 @@ const Product = ({ productId }) => {
       size="large"
       spinning={loading}
       className="global-spinner"
-      tip="Loading... API might be sleeping on heroku, so this can take several seconds"
+      tip="Loading... API may be sleeping on heroku, so this can take several seconds"
     >
       {storeProduct ? (
         <Card

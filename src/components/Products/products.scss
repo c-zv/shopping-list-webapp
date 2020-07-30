@@ -106,6 +106,8 @@
   &__sellerName {
     color: gray;
     font-size: 0.8rem;
+    text-align: center;
+    line-height: normal;
   }
   &:hover &__name {
     text-decoration: underline;
